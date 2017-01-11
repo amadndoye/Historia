@@ -8,10 +8,9 @@ import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceBase;
 
 @ManagedBean
 public class UserManager {
-	private User user;
-	private String userName = "User Name";
-	private String password ;
-	private String mail = "Mail";
+	private User user = new User();
+
+	private String errorMessage = "";
 	
 	private static UserLoockUpService userLS = new UserLoockUpServiceBase();
 	
@@ -19,52 +18,42 @@ public class UserManager {
 		return user;
 	}
 	public String login () {
-		System.out.println("Login.java :login :userName : "+userName + " password :"+password);
-		user = userLS.logIn(userName, password);
+		System.out.println("Login.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
+		user = userLS.logIn(user);
 		if(user == null){
-			//Error page
+			errorMessage = "Wrong user Name or password" ;
+			user = new User();
+			return null;
 		}
-	    return "home/home";
+	    return "/jsf/home/home";
 	  }
 	
 	public String registration(){
-		System.out.println(" Login.java :registration :userName : "+userName + " password :"+password + " mail : "+mail);
-		 
-		if(userLS.addUser(userName, password , mail) != null){
-			password = "";
+		System.out.println(" Login.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		 user = userLS.addUser(user);
+		if( user != null){
+			errorMessage = "User already existe";
+			user = new User();
+			return null;
+		}else{
+			user = new User();
+		    return "/jsf/index";
 		}
 		
-	    return "/index";
 	}
 	
-
 	  public String logout() {
-		  user =null;
-		  return "/index";
+		  System.out.println(" Login.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		  user = new User();
+		  errorMessage = "";
+		  return "/jsf/index";
 	  }
 	  
-	  public String getUserName() {
-			return userName;
+		public String getErrorMessage() {
+			return errorMessage;
 		}
-
-		public void setUserName(String userName) {
-			this.userName = userName;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
-		public String getMail() {
-			return mail;
-		}
-
-		public void setMail(String mail) {
-			this.mail = mail;
+		public void setErrorMessage(String errorMessage) {
+			this.errorMessage = errorMessage;
 		}
 		
 	

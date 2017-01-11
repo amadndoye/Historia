@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+     
+	<h:head>
+		<title>Index</title>
+		<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	
+	<h:body>
+		<div align="center">
+			<h:form >
+				<h:inputText value ="#{userManager.user.userName}" required="true" id="userName-id" name ="user Name"/>		
+				<h:message for="userName-id" styleClass="error" id="userId-error"/>
+				 <br/>
+				
+				<h:inputSecret value ="#{userManager.user.password}"  required="true" id="password-id"/>				
+				<h:message for="password-id" styleClass="error" id="password-error"/>
+				<br/>
+				
+			 	<h:commandButton value ="Submit" action="#{userManager.login}">
+			 		<f:ajax execute="@form" render="userId-error password-error result"/><br/>
+			 	
+			 	</h:commandButton>
+			 	<h:outputText value="#{userManager.errorMessage}" id="result"/>
+			 	
+			</h:form>
+							
+		</div>
+	
+	
+	</h:body>
+</html>

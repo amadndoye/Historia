@@ -14,20 +14,20 @@ public class UserLoockUpServiceBase implements UserLoockUpService {
 	}
 	
 	@Override
-	public User logIn(String userName , String passWord){
-		User x = users.get(userName);
-		if(x!=null && x.getPassword().equals(passWord)){
+	public User logIn(User user){
+		User x = users.get(user.getUserName());
+		if(x!=null && x.getPassword().equals(user.getPassword())){
 			return x;
 		}
 		return null;
 	}
 
 	@Override
-	public User addUser(String userName, String password, String mail){
-		if(!users.containsKey(userName)){
-			return users.put(userName, new User(userName,password,mail));
-		}
-		return null ;
+	public User addUser(User user){
+		System.out.println(" userLoockUpServiceBase.java :addUser :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		return users.put(user.getUserName(), new User(user.getUserName(),user.getUserName(),user.getMail()));
+		
+		
 	}
 	
 

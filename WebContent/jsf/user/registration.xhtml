@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<title>Index</title>
+		<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	<h:body>
+		<h1 class="title">registration</h1>
+		
+		<h:form>
+			<h:inputText value ="#{userManager.user.userName}" required="true"  id = "userName-id"/>
+			<h:message for="userName-id" styleClass="error" id="userId-error"/>
+			<br/>
+			
+			<h:inputSecret value ="#{userManager.user.password}"  required="true" id = "password-id" />
+			<h:message for="password-id" styleClass="error" id="password-error"/>
+			<br/>
+			
+			
+			<h:inputText value ="#{userManager.user.mail}" required="true" id ="mail-id"/> 
+			<h:message for="mail-id" styleClass="error" id="mail-error"/>
+			<br/>
+			
+		 	<h:commandButton value ="Submit" action="#{userManager.registration}">
+		 			 	<f:ajax execute="@form" render="userId-error password-error mail-error result"/><br/>
+		 	</h:commandButton>		 	
+		 	<h:outputText value="#{userManager.errorMessage}" id="result"/>
+		 	
+		</h:form>
+		<h:form>
+			<h:commandButton value ="Cancel" action="/jsf/index.xhtml" onclick="clean()"/>
+		</h:form>
+		
+	<script type="text/javascript">
+		function clean() {
+			$userName-id = ""
+			$password-id = ""
+			$mail-id = ""
+		}
+    </script>
+    
+	</h:body>
+	
+
+</html>
