@@ -50,6 +50,8 @@ Temporary Items
 # project specific 
 *.class
 bin/
+build/
+**/.metadata/
 **/.idea/
 **/.settings/
 **/.classpath/
