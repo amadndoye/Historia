@@ -3,25 +3,29 @@ package fr.univ.upem.localHistory.managedBeans;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import fr.univ.upem.localHistory.beans.User;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpService;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 
 @ManagedBean
+@SessionScoped
 public class UserManager implements Serializable{
 	
-	private static final long serialVersionUID = -7098814591506238090L;
+	private static final long serialVersionUID = -4561164179000594735L;
 
 	private User user = new User();
 
-	private String errorMessage = "";
-	
 	private static ResourceBundle stringError;
 	
 	private boolean showForm =false ;
+	private boolean isNotLoggedIn = true;
 
 
 	private static UserLoockUpService userLS = new UserLoockUpServiceMap();
@@ -31,50 +35,50 @@ public class UserManager implements Serializable{
 		return user;
 	}
 
-	public String getErrorMessage() {
-		return errorMessage;
-	}
 	
-	public String login () {
+	public void login (ActionEvent event) {
 		
 		System.out.println("Login.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
 		user = userLS.logIn(user);
+		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
 		if(user == null){
-			stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-			errorMessage = stringError.getString("userWrongID") ;
+			addMessage(stringError.getString("userWrongID"),FacesMessage.SEVERITY_ERROR) ;
 			user = new User();
-			return null;
+		}else{
+		    addMessage("login succeed",FacesMessage.SEVERITY_INFO);
+		     isNotLoggedIn = false;
 		}
-	    return "login-success";
 	  }
 	
-	public String registration(){
+	public void registration(ActionEvent event){
 		System.out.println(" Login.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
-		 user = userLS.addUser(user);
+		user = userLS.addUser(user);
+		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
 		if( user != null){
-			stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-			errorMessage = stringError.getString("userExiste") ;
-			user = new User();
-			return null;
+			addMessage(stringError.getString("userExiste"),FacesMessage.SEVERITY_ERROR);
 		}else{
-			user = new User();
 			showForm = false;
-		    return "index";
+			addMessage("registration succeed", FacesMessage.SEVERITY_INFO);
+
 		}
+		user = new User();
+
 		
 	}
 	
-	  public String logout() {
+	  public void logout() {
+		  stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 		  System.out.println(" Login.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		  user = new User();
-		  errorMessage = "";
-		  return "index";
+		  addMessage("log out", FacesMessage.SEVERITY_INFO);
+		  isNotLoggedIn = true;
 	  }
 	  
-	  public String cancel(){
+	  public void cancel(ActionEvent event){
 		  user = new User();
 		  this.showForm = false;
-		  return null;
 	  }
 
 	  
@@ -82,12 +86,18 @@ public class UserManager implements Serializable{
 		return showForm;
 	}
 
-	public String updateShowForm() {
+	public void updateShowForm(ActionEvent event) {
 		this.showForm = true;
-		return null;
 	}
 	  
-		
-		
+	 public void addMessage(String summary, Severity severity) {
+	        FacesMessage message = new FacesMessage(severity, summary,  null);
+	        FacesContext.getCurrentInstance().addMessage("growl", message);
+	    }
+
+
+	public boolean isNotLoggedIn() {
+		return isNotLoggedIn;
+	}
 	
 }

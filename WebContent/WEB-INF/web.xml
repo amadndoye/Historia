@@ -8,6 +8,40 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.jsf</url-pattern>
   </servlet-mapping>
+
+<!-- BootsFaces Config  --> 
+	<context-param>
+  	 	<param-name>javax.faces.FACELETS_DECORATORS</param-name>
+   		<param-value>net.bootsfaces.decorator.BootsFacesTagDecorator</param-value>
+ 	</context-param>
+   	<context-param>
+    	<param-name>BootsFaces_THEME</param-name>
+    	<param-value>cerulean</param-value>
+	</context-param>
+  	<context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!-- end of BootsFaces Config  --> 
+    
+  <!-- omnifaces configuration -->
+  <!-- activate resource caching -->
+<context-param>
+    <param-name>org.omnifaces.COMBINED_RESOURCE_ACTIVATE_RESOURCE_CACHING</param-name>
+    <param-value>true</param-value>
+</context-param>
+<!-- cache ten combined resources at most -->
+<context-param>
+    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_MAX_CAPACITY</param-name>
+    <param-value>30</param-value>
+</context-param>
+<!-- set the maximum time-to-live of cache entries to one day -->
+<context-param>
+    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
+    <param-value>0</param-value>
+</context-param>
+  <!-- end of  omnifaces configuration -->
+    
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
@@ -17,7 +51,9 @@
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
     <param-value>client</param-value>
   </context-param>
+  
   <welcome-file-list>
     <welcome-file>jsf/index.jsf</welcome-file>
   </welcome-file-list>
+  
 </web-app>
