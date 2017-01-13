@@ -7,27 +7,28 @@
       
      
 	<h:head>
-		<title>Index</title>
-		<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+		<h:outputStylesheet name="styles.css" library="css"/>
 	</h:head>
 	
 	<h:body>
-		<div align="center">
-			<h:form >
-				<h:inputText value ="#{userManager.user.userName}" required="true" id="userName-id" name ="user Name"/>		
-				<h:message for="userName-id" styleClass="error" id="userId-error"/>
-				 <br/>
+		<div>
+			<h:form  >
+				<h:panelGrid columns="3" styleClass="formTable">
+					
+					#{stringButton.userName}
+					<h:inputText value ="#{userManager.user.userName}" required="true" id="userName-id" name ="userName"/>		
+					<h:message for="userName-id" styleClass="errorMessage" id="userId-error"/>
+					
+					#{stringButton.password}
+					<h:inputSecret value ="#{userManager.user.password}"  required="true" id="password-id" name="password"/>				
+					<h:message for="password-id" styleClass="errorMessage" id="password-error"/>
+				</h:panelGrid>
 				
-				<h:inputSecret value ="#{userManager.user.password}"  required="true" id="password-id"/>				
-				<h:message for="password-id" styleClass="error" id="password-error"/>
-				<br/>
-				
-			 	<h:commandButton value ="Submit" action="#{userManager.login}">
-			 		<f:ajax execute="@form" render="userId-error password-error result"/><br/>
+			 	<h:commandButton value ="#{stringButton.submit}" action="#{userManager.login}">
+			 		<f:ajax execute="@form" render="userId-error password-error formMessage-id"/><br/>
 			 	
 			 	</h:commandButton>
-			 	<h:outputText value="#{userManager.errorMessage}" id="result"/>
-			 	
+			 	<h:outputText value="#{userManager.errorMessage}" id="formMessage-id" styleClass="errorMessage"></h:outputText>
 			</h:form>
 							
 		</div>

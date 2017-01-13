@@ -1,9 +1,12 @@
 package fr.univ.upem.localHistory.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
+	
+	private static final long serialVersionUID = -6725038536217314164L;
 	private String userName;
 	private String password;
 	private String mail; 
