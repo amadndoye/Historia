@@ -12,18 +12,32 @@
 	</h:head>
 	
 	
-	<h:body>
+	<h:body >
+		
 		<h1 class="title">#{stringText.welcome}</h1>
 		<div align="center">
-			<ui:include src = "user/login.xhtml" />
+		<h:panelGroup id="form-index">
+			<h:panelGroup id="form-login" rendered="#{ ! userManager.showForm}">
+				<ui:include src = "user/login.xhtml"  />
+				<h:form>
+					<h:commandLink value= "#{stringButton.registration}" action="#{userManager.updateShowForm}">
+					<f:ajax execute="@form" render="form-index" />
+					</h:commandLink>
+				</h:form>
+			</h:panelGroup>
+				
+			<h:panelGroup id="form-registration" rendered="#{userManager.showForm}">
+					<ui:include src = "user/registration.xhtml"  />
+			</h:panelGroup>
 			
-			<h:form>
-				<h:commandLink value= "#{stringButton.registration}" action="registration-form"/>
-			</h:form>
+		</h:panelGroup>
+			
+		</div>
+				
+		
 						 	
 				
 		
-		</div>
 	
 	
 	</h:body>

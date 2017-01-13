@@ -13,7 +13,7 @@
 		<h1 class="title">#{stringText.registration}</h1>
 		<h:outputText value="#{userManager.errorMessage}" id="formMessage-id" styleClass="errorMessage"/>
 	
-		<h:form>
+		<h:form id="form_registration">
 			<h:panelGrid columns="3" styleClass="formTable">
 		
 				#{stringButton.userName}
@@ -33,18 +33,14 @@
 		 		<h:commandButton value ="#{stringButton.submit}" action="#{userManager.registration}">
 		 			<f:ajax execute="@form" render="userId-error password-error mail-error formMessage-id"/>
 		 		</h:commandButton>	
-					<h:commandButton value ="#{stringButton.cancel}" action="index" onclick="clean()" immediate="true"/>
+		 		
+				<h:commandButton value ="#{stringButton.cancel}" action="#{userManager.registration}" immediate="true">
+					<f:ajax execute="@form" render="form-index"/>
+				</h:commandButton>
 		 	</h:panelGrid>
 		 	 	
 		</h:form>
 		
-	<script type="text/javascript">
-		function clean() {
-			$userName-id = ""
-			$password-id = ""
-			$mail-id = ""
-		}
-    </script>
     
 	</h:body>
 	

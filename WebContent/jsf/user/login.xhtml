@@ -12,9 +12,8 @@
 	
 	<h:body>
 		<div>
-			<h:form  >
+			<h:form>
 				<h:panelGrid columns="3" styleClass="formTable">
-					
 					#{stringButton.userName}
 					<h:inputText value ="#{userManager.user.userName}" required="true" id="userName-id" name ="userName"/>		
 					<h:message for="userName-id" styleClass="errorMessage" id="userId-error"/>

@@ -20,6 +20,8 @@ public class UserManager implements Serializable{
 	private String errorMessage = "";
 	
 	private static ResourceBundle stringError;
+	
+	private boolean showForm =false ;
 
 
 	private static UserLoockUpService userLS = new UserLoockUpServiceMap();
@@ -56,6 +58,7 @@ public class UserManager implements Serializable{
 			return null;
 		}else{
 			user = new User();
+			showForm = false;
 		    return "index";
 		}
 		
@@ -67,6 +70,22 @@ public class UserManager implements Serializable{
 		  errorMessage = "";
 		  return "index";
 	  }
+	  
+	  public String cancel(){
+		  user = new User();
+		  this.showForm = false;
+		  return null;
+	  }
+
+	  
+	public boolean isShowForm() {
+		return showForm;
+	}
+
+	public String updateShowForm() {
+		this.showForm = true;
+		return null;
+	}
 	  
 		
 		
