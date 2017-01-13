@@ -5,34 +5,37 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core">
 	<h:head>
-		<title>Index</title>
-		<link href="./css/styles.css" rel="stylesheet" type="text/css"/>
+		<title>#{stringText.registrationTitle}</title>
+		<h:outputStylesheet name="styles.css" library="css"/>
+		
 	</h:head>
 	<h:body>
-		<h1 class="title">registration</h1>
+		<h1 class="title">#{stringText.registration}</h1>
+		<h:outputText value="#{userManager.errorMessage}" id="formMessage-id" styleClass="errorMessage"/>
+	
+		<h:form>
+			<h:panelGrid columns="3" styleClass="formTable">
 		
-		<h:form>
-			<h:inputText value ="#{userManager.user.userName}" required="true"  id = "userName-id"/>
-			<h:message for="userName-id" styleClass="error" id="userId-error"/>
-			<br/>
+				#{stringButton.userName}
+				<h:inputText value ="#{userManager.user.userName}" required="true" id = "userName-id" name="username" />
+				<h:message for="userName-id" styleClass="errorMessage" id="userId-error"/>				
+				
+				#{stringButton.password}
+				<h:inputSecret value ="#{userManager.user.password}"  required="true" id = "password-id" name="password"/>
+				<h:message for="password-id" styleClass="errorMessage" id="password-error"/>
 			
-			<h:inputSecret value ="#{userManager.user.password}"  required="true" id = "password-id" />
-			<h:message for="password-id" styleClass="error" id="password-error"/>
-			<br/>
-			
-			
-			<h:inputText value ="#{userManager.user.mail}" required="true" id ="mail-id"/> 
-			<h:message for="mail-id" styleClass="error" id="mail-error"/>
-			<br/>
-			
-		 	<h:commandButton value ="Submit" action="#{userManager.registration}">
-		 			 	<f:ajax execute="@form" render="userId-error password-error mail-error result"/><br/>
-		 	</h:commandButton>		 	
-		 	<h:outputText value="#{userManager.errorMessage}" id="result"/>
-		 	
-		</h:form>
-		<h:form>
-			<h:commandButton value ="Cancel" action="/jsf/index.xhtml" onclick="clean()"/>
+				#{stringButton.mail}
+				<h:inputText value ="#{userManager.user.mail}" required="true" id ="mail-id" name="mail"/> 
+				<h:message for="mail-id" styleClass="errorMessage" id="mail-error"/>
+
+			</h:panelGrid>
+			<h:panelGrid columns="2" styleClass="formTable">
+		 		<h:commandButton value ="#{stringButton.submit}" action="#{userManager.registration}">
+		 			<f:ajax execute="@form" render="userId-error password-error mail-error formMessage-id"/>
+		 		</h:commandButton>	
+					<h:commandButton value ="#{stringButton.cancel}" action="index" onclick="clean()" immediate="true"/>
+		 	</h:panelGrid>
+		 	 	
 		</h:form>
 		
 	<script type="text/javascript">

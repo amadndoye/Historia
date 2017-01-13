@@ -5,11 +5,11 @@ import java.util.Map;
 
 import fr.univ.upem.localHistory.beans.User;
 
-public class UserLoockUpServiceBase implements UserLoockUpService {
+public class UserLoockUpServiceMap implements UserLoockUpService {
 
 	private Map<String,User> users ;
 	
-	public UserLoockUpServiceBase() {
+	public UserLoockUpServiceMap() {
 		users = new HashMap<String, User>();
 	}
 	

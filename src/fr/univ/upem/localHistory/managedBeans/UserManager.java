@@ -1,43 +1,62 @@
 package fr.univ.upem.localHistory.managedBeans;
 
+import java.io.Serializable;
+import java.util.ResourceBundle;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import fr.univ.upem.localHistory.beans.User;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpService;
-import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceBase;
+import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 
 @ManagedBean
-public class UserManager {
+public class UserManager implements Serializable{
+	
+	private static final long serialVersionUID = -7098814591506238090L;
+
 	private User user = new User();
 
 	private String errorMessage = "";
 	
-	private static UserLoockUpService userLS = new UserLoockUpServiceBase();
+	private static ResourceBundle stringError;
+
+
+	private static UserLoockUpService userLS = new UserLoockUpServiceMap();
+	
 	
 	public User getUser(){
 		return user;
 	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	
 	public String login () {
+		
 		System.out.println("Login.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
 		user = userLS.logIn(user);
 		if(user == null){
-			errorMessage = "Wrong user Name or password" ;
+			stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			errorMessage = stringError.getString("userWrongID") ;
 			user = new User();
 			return null;
 		}
-	    return "/jsf/home/home";
+	    return "login-success";
 	  }
 	
 	public String registration(){
 		System.out.println(" Login.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		 user = userLS.addUser(user);
 		if( user != null){
-			errorMessage = "User already existe";
+			stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			errorMessage = stringError.getString("userExiste") ;
 			user = new User();
 			return null;
 		}else{
 			user = new User();
-		    return "/jsf/index";
+		    return "index";
 		}
 		
 	}
@@ -46,15 +65,10 @@ public class UserManager {
 		  System.out.println(" Login.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		  user = new User();
 		  errorMessage = "";
-		  return "/jsf/index";
+		  return "index";
 	  }
 	  
-		public String getErrorMessage() {
-			return errorMessage;
-		}
-		public void setErrorMessage(String errorMessage) {
-			this.errorMessage = errorMessage;
-		}
+		
 		
 	
 }
