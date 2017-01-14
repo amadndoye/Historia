@@ -38,7 +38,11 @@
 <!-- set the maximum time-to-live of cache entries to one day -->
 <context-param>
     <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
-    <param-value>0</param-value>
+    <param-value>86400</param-value>
+</context-param>
+<context-param>
+    <param-name>org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP</param-name>
+    <param-value>javax.ejb.EJBException,javax.persistence.RollbackException</param-value>
 </context-param>
   <!-- end of  omnifaces configuration -->
     

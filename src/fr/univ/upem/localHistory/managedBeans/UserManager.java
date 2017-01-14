@@ -3,18 +3,21 @@ package fr.univ.upem.localHistory.managedBeans;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.omnifaces.cdi.Eager;
 
 import fr.univ.upem.localHistory.beans.UserBean;
-import fr.univ.upem.localHistory.loockupService.UserLoockUpService;
+import fr.univ.upem.localHistory.loockupService.IUserLoockUpService;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 
 @ManagedBean
+@Eager
 @SessionScoped
 public class UserManager implements Serializable{
 	
@@ -28,11 +31,16 @@ public class UserManager implements Serializable{
 	private boolean isNotLoggedIn = true;
 
 
-	private static UserLoockUpService userLS = new UserLoockUpServiceMap();
+	private IUserLoockUpService userLS ;
 	
 	
 	public UserBean getUser(){
 		return user;
+	}
+	
+	@PostConstruct
+	public void init(){
+		 userLS = new UserLoockUpServiceMap();
 	}
 
 	

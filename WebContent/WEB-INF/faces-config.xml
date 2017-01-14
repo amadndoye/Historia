@@ -20,5 +20,11 @@
 			<var>stringButton</var>
 		</resource-bundle>
 	</application>
+	
+	<factory>
+  	  <exception-handler-factory>org.omnifaces.exceptionhandler.FullAjaxExceptionHandlerFactory</exception-handler-factory>
+  	  <exception-handler-factory>org.omnifaces.exceptionhandler.FacesMessageExceptionHandlerFactory</exception-handler-factory>
+  	  
+	</factory>
 		
 </faces-config>

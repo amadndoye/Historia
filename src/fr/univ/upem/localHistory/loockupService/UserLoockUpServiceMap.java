@@ -1,11 +1,13 @@
 package fr.univ.upem.localHistory.loockupService;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import fr.univ.upem.localHistory.beans.UserBean;
 
-public class UserLoockUpServiceMap implements UserLoockUpService {
+
+public class UserLoockUpServiceMap implements IUserLoockUpService {
 
 	private Map<String,UserBean> users ;
 	
