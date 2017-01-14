@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User implements Serializable {
+public class UserBean implements Serializable {
 	
 	private static final long serialVersionUID = -6725038536217314164L;
 	private String userName;
@@ -13,12 +13,12 @@ public class User implements Serializable {
 	private List<String> previousSearch;
 	private long userId;
 	
-	public User(){
+	public UserBean(){
 		setPreviousSearch(new ArrayList<String>());
 		
 	}
 
-	public User(String userName2, String password2, String mail2) {
+	public UserBean(String userName2, String password2, String mail2) {
 		this.userName = userName2;
 		password = password2;
 		setMail(mail2);

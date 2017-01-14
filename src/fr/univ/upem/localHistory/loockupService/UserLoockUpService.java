@@ -1,10 +1,10 @@
 package fr.univ.upem.localHistory.loockupService;
 
-import fr.univ.upem.localHistory.beans.User;
+import fr.univ.upem.localHistory.beans.UserBean;
 
 public interface UserLoockUpService {
-	public User logIn(User user);
+	public UserBean logIn(UserBean user);
 	
-	public User addUser(User user);
+	public UserBean addUser(UserBean user);
 
 }
