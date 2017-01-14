@@ -10,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import fr.univ.upem.localHistory.beans.User;
+import fr.univ.upem.localHistory.beans.UserBean;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpService;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 
@@ -20,7 +20,7 @@ public class UserManager implements Serializable{
 	
 	private static final long serialVersionUID = -4561164179000594735L;
 
-	private User user = new User();
+	private UserBean user = new UserBean();
 
 	private static ResourceBundle stringError;
 	
@@ -31,7 +31,7 @@ public class UserManager implements Serializable{
 	private static UserLoockUpService userLS = new UserLoockUpServiceMap();
 	
 	
-	public User getUser(){
+	public UserBean getUser(){
 		return user;
 	}
 
@@ -44,7 +44,7 @@ public class UserManager implements Serializable{
 
 		if(user == null){
 			addMessage(stringError.getString("userWrongID"),FacesMessage.SEVERITY_ERROR) ;
-			user = new User();
+			user = new UserBean();
 		}else{
 		    addMessage("login succeed",FacesMessage.SEVERITY_INFO);
 		     isNotLoggedIn = false;
@@ -63,7 +63,7 @@ public class UserManager implements Serializable{
 			addMessage("registration succeed", FacesMessage.SEVERITY_INFO);
 
 		}
-		user = new User();
+		user = new UserBean();
 
 		
 	}
@@ -71,13 +71,13 @@ public class UserManager implements Serializable{
 	  public void logout() {
 		  stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 		  System.out.println(" Login.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
-		  user = new User();
+		  user = new UserBean();
 		  addMessage("log out", FacesMessage.SEVERITY_INFO);
 		  isNotLoggedIn = true;
 	  }
 	  
 	  public void cancel(ActionEvent event){
-		  user = new User();
+		  user = new UserBean();
 		  this.showForm = false;
 	  }
 
@@ -92,7 +92,7 @@ public class UserManager implements Serializable{
 	  
 	 public void addMessage(String summary, Severity severity) {
 	        FacesMessage message = new FacesMessage(severity, summary,  null);
-	        FacesContext.getCurrentInstance().addMessage("growl", message);
+	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }
 
 
