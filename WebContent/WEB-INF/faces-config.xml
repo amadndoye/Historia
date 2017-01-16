@@ -5,7 +5,6 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
     <application >
-    	<resource-handler>org.omnifaces.resourcehandler.CombinedResourceHandler </resource-handler>
         
 	    <resource-bundle >
 			<base-name>StringText</base-name>
@@ -21,10 +20,5 @@
 		</resource-bundle>
 	</application>
 	
-	<factory>
-  	  <exception-handler-factory>org.omnifaces.exceptionhandler.FullAjaxExceptionHandlerFactory</exception-handler-factory>
-  	  <exception-handler-factory>org.omnifaces.exceptionhandler.FacesMessageExceptionHandlerFactory</exception-handler-factory>
-  	  
-	</factory>
 		
 </faces-config>

@@ -10,25 +10,23 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import org.omnifaces.cdi.Eager;
 
 import fr.univ.upem.localHistory.beans.UserBean;
 import fr.univ.upem.localHistory.loockupService.IUserLoockUpService;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 
 @ManagedBean
-@Eager
 @SessionScoped
 public class UserManager implements Serializable{
 	
 	private static final long serialVersionUID = -4561164179000594735L;
 
-	private UserBean user = new UserBean();
+	private UserBean user;
 
 	private static ResourceBundle stringError;
 	
-	private boolean showForm =false ;
-	private boolean isNotLoggedIn = true;
+	private boolean showForm ;
+	private boolean isNotLoggedIn;
 
 
 	private IUserLoockUpService userLS ;
@@ -40,7 +38,11 @@ public class UserManager implements Serializable{
 	
 	@PostConstruct
 	public void init(){
+		System.out.println("PostConstruct: UserManager.java is initializing");
 		 userLS = new UserLoockUpServiceMap();
+		 user = new UserBean();
+		 showForm =false ;
+		 isNotLoggedIn = true;
 	}
 
 	

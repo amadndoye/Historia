@@ -16,7 +16,7 @@
  	</context-param>
    	<context-param>
     	<param-name>BootsFaces_THEME</param-name>
-    	<param-value>cerulean</param-value>
+    	<param-value>spacelab</param-value>
 	</context-param>
   	<context-param>
         <param-name>BootsFaces_USETHEME</param-name>
@@ -24,28 +24,7 @@
     </context-param>
     <!-- end of BootsFaces Config  --> 
     
-  <!-- omnifaces configuration -->
-  <!-- activate resource caching -->
-<context-param>
-    <param-name>org.omnifaces.COMBINED_RESOURCE_ACTIVATE_RESOURCE_CACHING</param-name>
-    <param-value>true</param-value>
-</context-param>
-<!-- cache ten combined resources at most -->
-<context-param>
-    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_MAX_CAPACITY</param-name>
-    <param-value>30</param-value>
-</context-param>
-<!-- set the maximum time-to-live of cache entries to one day -->
-<context-param>
-    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
-    <param-value>86400</param-value>
-</context-param>
-<context-param>
-    <param-name>org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP</param-name>
-    <param-value>javax.ejb.EJBException,javax.persistence.RollbackException</param-value>
-</context-param>
-  <!-- end of  omnifaces configuration -->
-    
+ 
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>

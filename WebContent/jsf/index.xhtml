@@ -2,12 +2,9 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui"
+       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:o="http://omnifaces.org/ui"
-	  xmlns:of="http://omnifaces.org/functions"
-	  >
+      xmlns:f="http://java.sun.com/jsf/core">
       
 	<h:head>
 		<title>#{stringText.indexTitle}</title>
@@ -15,14 +12,13 @@
 	
 	<h:body>
 		<b:container id="main-index" >
-				<b:container id="form-index" rendered ="#{userManager.notLoggedIn}">
-				
+				<b:container id="form-index" rendered ="#{userManager.notLoggedIn}" >
 					<b:growl id="growl" life="10000" placementFrom="top" show-detail="true" global-only="false"
         					show-summary="true" allow-dismiss="true" animation-enter="animated bounceInDown"
        						 animation-exit="animated flipOutX" escape="true" />
 				
 					<b:container id="form-login" rendered="#{!userManager.showForm}">
-							<ui:include src ="user/login.xhtml"/>
+							<ui:include  src ="user/login.xhtml"  />
 					</b:container>
 						
 					<b:container id="form-registration" rendered="#{userManager.showForm}">
@@ -31,7 +27,7 @@
 				</b:container>	
 				
 				<b:container id="home-index" rendered="#{!userManager.notLoggedIn}">
-						 	<ui:include src="home/home.xhtml"/>	 		
+						 	<ui:include src="home/home.xhtml" />	 		
 				</b:container>	
 		</b:container>
 				 	

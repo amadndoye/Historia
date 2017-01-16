@@ -1,5 +1,6 @@
 package fr.univ.upem.localHistory.beans;
 
+
 public class MuseumBean implements ILocationBean{
 	private String name;
 	private String adresse;

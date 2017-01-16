@@ -13,6 +13,7 @@ public class UserLoockUpServiceMap implements IUserLoockUpService {
 	
 	public UserLoockUpServiceMap() {
 		users = new HashMap<String, UserBean>();
+		users.put("admin",new UserBean("admin","admin","admin"));
 	}
 	
 	@Override

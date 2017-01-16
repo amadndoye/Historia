@@ -1,42 +1,50 @@
 package fr.univ.upem.localHistory.beans;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 
 public class SearchBean {
 	
-	private List<String> selected_type;
-	private String search_value;
-	private List<String> selected_match ;
+	@NotNull
+	private String selected_match = null;
+	private String search_field;
+	private List<String> selected_matches ;
 	private long latitude;
 	private long  longitude;
 	private boolean isFree;
+	private boolean isMonument;
+	private boolean isMuseum;
 	
 	public SearchBean() {
-		
-	}
+		selected_matches = new ArrayList<String>();
+		selected_matches.add("Name");
+		selected_matches.add("Region");
+		selected_matches.add("Theme");
+		selected_matches.add("All");
 
-	public List<String> getSelected_type() {
-		return selected_type;
-	}
-
-	public void setSelected_type(List<String> selected_type) {
-		this.selected_type = selected_type;
+		isFree = true ;
+		isMonument = true ;
+		isMuseum = true;
+	
 	}
 
 	public String getSearch_value() {
-		return search_value;
+		return search_field;
 	}
 
 	public void setSearch_value(String search_value) {
-		this.search_value = search_value;
+		this.search_field = search_value;
 	}
 
-	public List<String> getSelected_match() {
-		return selected_match;
+	public List<String> getSelected_matches() {
+		return selected_matches;
 	}
 
-	public void setSelected_match(List<String> selected_match) {
-		this.selected_match = selected_match;
+	public void setSelected_matches(List<String> selected_matches) {
+		this.selected_matches = selected_matches;
 	}
 
 	public long getLatitude() {
@@ -61,5 +69,39 @@ public class SearchBean {
 
 	public void setFree(boolean isFree) {
 		this.isFree = isFree;
+	}
+
+
+
+	public boolean isMonument() {
+		return isMonument;
+	}
+
+
+
+	public void setMonument(boolean isMonument) {
+		this.isMonument = isMonument;
+	}
+
+
+
+	public boolean isMuseum() {
+		return isMuseum;
+	}
+
+
+
+	public void setMuseum(boolean isMuseum) {
+		this.isMuseum = isMuseum;
+	}
+
+
+	public String getSelected_match() {
+		return selected_match;
+	}
+
+
+	public void setSelected_match(String selected_match) {
+		this.selected_match = selected_match;
 	}
 }

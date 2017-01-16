@@ -6,17 +6,16 @@ import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-
-import org.omnifaces.cdi.Startup;
 
 import fr.univ.upem.localHistory.beans.SearchBean;
 import fr.univ.upem.localHistory.loockupService.MonumentLoockUpServiceMap;
 import fr.univ.upem.localHistory.loockupService.MuseumLoockUpServiceMap;
 
-@ManagedBean
-@Startup
+@ManagedBean(eager=true)
+@ApplicationScoped
 public class SearchManager implements Serializable{
 
 
@@ -32,8 +31,10 @@ public class SearchManager implements Serializable{
 	
 	@PostConstruct
 	public void init() {
+		System.out.println("PostConstruct: SearChManager.java is initializing");
 		monumentLS = new MonumentLoockUpServiceMap();
 		museumLS = new MuseumLoockUpServiceMap();
+		search = new SearchBean();
 	}
 	
 

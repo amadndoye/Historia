@@ -1,5 +1,6 @@
 package fr.univ.upem.localHistory.beans;
 
+
 public class MonumentBean implements ILocationBean {
 	
 	private String name;

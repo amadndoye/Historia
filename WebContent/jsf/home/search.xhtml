@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+	  
+	<h:head>
+	</h:head>
+	
+	<h:body >
+		<b:panel>
+	
+		<b:form id="search-form-id"  >
+		   	<b:row >
+		
+				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="Tape a key word "  span="6">
+				   <f:facet name="append"> 
+				   <b:commandButton value="Submit"/>
+				   </f:facet>
+				
+				</b:inputText>
+			</b:row>
+			<b:row >
+			    <b:selectBooleanCheckbox span="1" value="#{searchManager.search.free}" label="Free" id ="is-free-id" />
+			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.museum}" label="Museum" id = "is-museum-id"/>
+			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.monument}" label="Monument" id= "is-monument-id" />
+		    </b:row>
+   			 <b:row>
+   				<b:selectMultiMenu value="#{searchManager.search.selected_match}" id="selected-match-id" label="Specific Match : ">		                 
+		              <f:selectItems value="#{searchManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
+				</b:selectMultiMenu>
+				
+								    
+   			</b:row>
+     
+		        
+		</b:form>
+		</b:panel>
+		
+		
+	</h:body>
+</html>
