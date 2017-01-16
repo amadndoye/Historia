@@ -11,6 +11,9 @@ public class MonumentBean implements ILocationBean {
 	public MonumentBean(){
 		
 	}
+	public MonumentBean(String name, String string2) {
+		this.name = name;
+	}
 	public String getName() {
 		return name;
 	}

@@ -6,8 +6,9 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
-    <url-pattern>*.jsf</url-pattern>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
+  
 
 <!-- BootsFaces Config  --> 
 	<context-param>
@@ -36,7 +37,7 @@
   </context-param>
   
   <welcome-file-list>
-    <welcome-file>jsf/index.jsf</welcome-file>
+    <welcome-file>jsf/index.xhtml</welcome-file>
   </welcome-file-list>
   
 </web-app>

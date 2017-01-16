@@ -1,6 +1,7 @@
 package fr.univ.upem.localHistory.managedBeans;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import fr.univ.upem.localHistory.beans.SearchBean;
 import fr.univ.upem.localHistory.beans.UserBean;
 import fr.univ.upem.localHistory.loockupService.IUserLoockUpService;
 import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
@@ -19,7 +21,9 @@ import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 @SessionScoped
 public class UserManager implements Serializable{
 	
-	private static final long serialVersionUID = -4561164179000594735L;
+
+	
+	private static final long serialVersionUID = 5087659609209633734L;
 
 	private UserBean user;
 
@@ -28,7 +32,7 @@ public class UserManager implements Serializable{
 	private boolean showForm ;
 	private boolean isNotLoggedIn;
 
-
+	
 	private IUserLoockUpService userLS ;
 	
 	
@@ -38,17 +42,19 @@ public class UserManager implements Serializable{
 	
 	@PostConstruct
 	public void init(){
-		System.out.println("PostConstruct: UserManager.java is initializing");
+		System.out.println("UserManager.java PostConstruct: UserManager is initializing");
 		 userLS = new UserLoockUpServiceMap();
 		 user = new UserBean();
 		 showForm =false ;
 		 isNotLoggedIn = true;
+		System.out.println("UserManager.java PostConstruct: UserManager finished initializing");
+
 	}
 
 	
 	public void login (ActionEvent event) {
 		
-		System.out.println("Login.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
+		System.out.println("UserManager.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
 		user = userLS.logIn(user);
 		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
@@ -62,7 +68,7 @@ public class UserManager implements Serializable{
 	  }
 	
 	public void registration(ActionEvent event){
-		System.out.println(" Login.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		System.out.println(" UserManager.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		user = userLS.addUser(user);
 		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
@@ -80,13 +86,14 @@ public class UserManager implements Serializable{
 	
 	  public void logout() {
 		  stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-		  System.out.println(" Login.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		  System.out.println(" UserManager.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		  user = new UserBean();
 		  addMessage("log out", FacesMessage.SEVERITY_INFO);
 		  isNotLoggedIn = true;
 	  }
 	  
 	  public void cancel(ActionEvent event){
+		 System.out.println("UserManager.java :cancel form");
 		  user = new UserBean();
 		  this.showForm = false;
 	  }
@@ -101,6 +108,8 @@ public class UserManager implements Serializable{
 	}
 	  
 	 public void addMessage(String summary, Severity severity) {
+			System.out.println("UserManager.java :summary :message : "+summary);
+
 	        FacesMessage message = new FacesMessage(severity, summary,  null);
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }
@@ -108,6 +117,11 @@ public class UserManager implements Serializable{
 
 	public boolean isNotLoggedIn() {
 		return isNotLoggedIn;
+	}
+	
+	public void addResearch(List<SearchBean> listOfSurch){
+		user.setPreviousSearch(listOfSurch);
+		
 	}
 	
 }

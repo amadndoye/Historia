@@ -10,11 +10,11 @@ public class UserBean implements Serializable {
 	private String userName;
 	private String password;
 	private String mail; 
-	private List<String> previousSearch;
+	private List<SearchBean> previousSearch;
 	private long userId;
 	
 	public UserBean(){
-		setPreviousSearch(new ArrayList<String>());
+		setPreviousSearch(new ArrayList<SearchBean>());
 		
 	}
 
@@ -22,7 +22,7 @@ public class UserBean implements Serializable {
 		this.userName = userName2;
 		password = password2;
 		setMail(mail2);
-		setPreviousSearch(new ArrayList<String>());
+		setPreviousSearch(new ArrayList<SearchBean>());
 
 	}
 
@@ -42,12 +42,17 @@ public class UserBean implements Serializable {
 		this.password = password;
 	}
 
-	public List<String> getPreviousSearch() {
+	public List<SearchBean> getPreviousSearch() {
 		return previousSearch;
 	}
 
-	public void setPreviousSearch(List<String> previousSearch) {
-		this.previousSearch = previousSearch;
+	public void setPreviousSearch(List<SearchBean> previousSearch) {
+		if(this.previousSearch.isEmpty()){
+			this.previousSearch = previousSearch;
+
+		}else{
+			this.previousSearch.addAll(previousSearch);
+		}
 	}
 
 	public long getUserId() {

@@ -15,9 +15,9 @@
 		<b:form id="search-form-id"  >
 		   	<b:row >
 		
-				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="Tape a key word "  span="6">
+				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="Tape a key word"  span="6">
 				   <f:facet name="append"> 
-				   <b:commandButton value="Submit"/>
+	 				<b:commandButton value ="#{stringButton.submit}" update="result-search" actionListener="#{searchManager.search}"/>
 				   </f:facet>
 				
 				</b:inputText>
@@ -30,11 +30,8 @@
    			 <b:row>
    				<b:selectMultiMenu value="#{searchManager.search.selected_match}" id="selected-match-id" label="Specific Match : ">		                 
 		              <f:selectItems value="#{searchManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
-				</b:selectMultiMenu>
-				
-								    
+				</b:selectMultiMenu>								    
    			</b:row>
-     
 		        
 		</b:form>
 		</b:panel>

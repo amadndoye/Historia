@@ -9,6 +9,8 @@ import fr.univ.upem.localHistory.beans.UserBean;
 
 public class UserLoockUpServiceMap implements IUserLoockUpService {
 
+	
+	private static final long serialVersionUID = -6675584186038434483L;
 	private Map<String,UserBean> users ;
 	
 	public UserLoockUpServiceMap() {

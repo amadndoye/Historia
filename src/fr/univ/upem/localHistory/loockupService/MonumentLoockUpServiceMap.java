@@ -7,17 +7,28 @@ import java.util.Map;
 
 import fr.univ.upem.localHistory.beans.ILocationBean;
 import fr.univ.upem.localHistory.beans.MonumentBean;
-import fr.univ.upem.localHistory.beans.MuseumBean;
 
 
-public class MonumentLoockUpServiceMap implements IMuseumLoockUpService, ILocationLoockUpService {
+public class MonumentLoockUpServiceMap implements IMonumentLoockUpService, ILocationLoockUpService {
 
-private Map<String,MonumentBean> monuments ;
-	
+private Map<Long,MonumentBean> monuments ;
+private long currentId  ;
+
 	public MonumentLoockUpServiceMap() {
-		monuments = new HashMap<String, MonumentBean>();
+		monuments = new HashMap<Long, MonumentBean>();
+		currentId = 0 ; 
+		monuments.put(currentId,new MonumentBean("Musée du Louvre", "ILE-DE-FRANCE"));
+		currentId++;
+		monuments.put(currentId,new MonumentBean("Musée Français de la Photographie", "ILE-DE-FRANCE"));
+		currentId++;
+
+		monuments.put(currentId,new MonumentBean("Musée d'Art Sacré", "DIJON"));
+		currentId++;
+
+		monuments.put(currentId,new MonumentBean("Musée de la Mine", "LA MACHINE"));
+		currentId++;
+
 	}
-	
 	@Override
 	public long getLatitude() {
 		// TODO Auto-generated method stub
@@ -36,20 +47,19 @@ private Map<String,MonumentBean> monuments ;
 		return null;
 	}
 
-	@Override
-	public MuseumBean getMuseum(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<MuseumBean> searchMuseum(String value, int type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Map<String,MonumentBean> getMonuments() {
+	public Map<Long,MonumentBean> getMonuments() {
 		return monuments;
+	}
+	@Override
+	public MonumentBean getMonument(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<MonumentBean> searchMonument(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

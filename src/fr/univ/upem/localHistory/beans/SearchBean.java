@@ -71,12 +71,9 @@ public class SearchBean {
 		this.isFree = isFree;
 	}
 
-
-
 	public boolean isMonument() {
 		return isMonument;
 	}
-
 
 
 	public void setMonument(boolean isMonument) {
@@ -84,11 +81,9 @@ public class SearchBean {
 	}
 
 
-
 	public boolean isMuseum() {
 		return isMuseum;
 	}
-
 
 
 	public void setMuseum(boolean isMuseum) {

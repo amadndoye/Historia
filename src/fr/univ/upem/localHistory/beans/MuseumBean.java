@@ -2,12 +2,13 @@ package fr.univ.upem.localHistory.beans;
 
 
 public class MuseumBean implements ILocationBean{
+	
 	private String name;
 	private String adresse;
-	private String commune;
-	private String region;
-	private int lieuCodePostal;
-	private String pays;
+	private String city;
+	private String department;
+	private int codePostal;
+	private String country;
 	private String phone;
 
 	private String acces;
@@ -30,6 +31,11 @@ public class MuseumBean implements ILocationBean{
 	public MuseumBean(){
 		
 	}
+	
+	public MuseumBean(String name ,String city){
+		this.name = name; 
+		this.city = city;
+	}
 	public String getName() {
 		return name;
 	}
@@ -42,29 +48,24 @@ public class MuseumBean implements ILocationBean{
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public String getCommune() {
-		return commune;
-	}
-	public void setCommune(String commune) {
-		this.commune = commune;
-	}
+
 	public String getRegion() {
-		return region;
+		return department;
 	}
 	public void setRegion(String region) {
-		this.region = region;
+		this.department = region;
 	}
 	public int getLieuCodePostal() {
-		return lieuCodePostal;
+		return codePostal;
 	}
 	public void setLieuCodePostal(int lieuCodePostal) {
-		this.lieuCodePostal = lieuCodePostal;
+		this.codePostal = lieuCodePostal;
 	}
 	public String getPays() {
-		return pays;
+		return country;
 	}
 	public void setPays(String pays) {
-		this.pays = pays;
+		this.country = pays;
 	}
 	public String getPhone() {
 		return phone;
@@ -149,6 +150,14 @@ public class MuseumBean implements ILocationBean{
 	}
 	public void setGratuit(boolean gratuit) {
 		this.gratuit = gratuit;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 }
