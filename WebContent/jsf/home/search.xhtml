@@ -15,20 +15,20 @@
 		<b:form id="search-form-id"  >
 		   	<b:row >
 		
-				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="Tape a key word"  span="6">
+				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}"  span="6">
 				   <f:facet name="append"> 
-	 				<b:commandButton value ="#{stringButton.submit}" update="result-search" actionListener="#{searchManager.search}"/>
+	 				<b:commandButton value ="#{stringButton.submit}" update="main-index" actionListener="#{searchManager.search}"/>
 				   </f:facet>
 				
 				</b:inputText>
 			</b:row>
 			<b:row >
-			    <b:selectBooleanCheckbox span="1" value="#{searchManager.search.free}" label="Free" id ="is-free-id" />
-			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.museum}" label="Museum" id = "is-museum-id"/>
-			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.monument}" label="Monument" id= "is-monument-id" />
+			    <b:selectBooleanCheckbox span="1" value="#{searchManager.search.free}" label="#{stringButton.checkboxFree}" id ="is-free-id" />
+			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.museum}" label="#{stringButton.checkboxMuseum}" id = "is-museum-id"/>
+			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.monument}" label="#{stringButton.checkboxMonument}" id= "is-monument-id" />
 		    </b:row>
    			 <b:row>
-   				<b:selectMultiMenu value="#{searchManager.search.selected_match}" id="selected-match-id" label="Specific Match : ">		                 
+   				<b:selectMultiMenu value="#{searchManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">		                 
 		              <f:selectItems value="#{searchManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
 				</b:selectMultiMenu>								    
    			</b:row>

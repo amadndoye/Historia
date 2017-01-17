@@ -1,7 +1,7 @@
 package fr.univ.upem.localHistory.beans;
 
 
-public class MuseumBean implements ILocationBean{
+public class MuseumBean extends AbstractLocationBean{
 	
 	private String name;
 	private String adresse;
@@ -23,16 +23,16 @@ public class MuseumBean implements ILocationBean{
 	private String themes;
 
 	private String horaires ;
-	private long latitude;
-	private long longitude;
+	
 	
 	private boolean gratuit;
-	
-	public MuseumBean(){
 		
+	public MuseumBean(){
+		super("Museum");
 	}
 	
-	public MuseumBean(String name ,String city){
+	public MuseumBean(long id,String name ,String city){
+		super(id,"Museum");
 		this.name = name; 
 		this.city = city;
 	}
@@ -133,18 +133,7 @@ public class MuseumBean implements ILocationBean{
 	public void setHoraires(String horaires) {
 		this.horaires = horaires;
 	}
-	public long getLatitude() {
-		return latitude;
-	}
-	public void setLatitude(long latitude) {
-		this.latitude = latitude;
-	}
-	public long getLongitude() {
-		return longitude;
-	}
-	public void setLongitude(long longitude) {
-		this.longitude = longitude;
-	}
+	
 	public boolean isGratuit() {
 		return gratuit;
 	}
@@ -159,5 +148,5 @@ public class MuseumBean implements ILocationBean{
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
+
 }

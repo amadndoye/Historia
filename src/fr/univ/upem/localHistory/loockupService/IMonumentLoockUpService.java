@@ -2,12 +2,14 @@ package fr.univ.upem.localHistory.loockupService;
 
 import java.util.List;
 
+import fr.univ.upem.localHistory.beans.AbstractLocationBean;
 import fr.univ.upem.localHistory.beans.MonumentBean;
 
 public interface IMonumentLoockUpService {
 	
-	public MonumentBean getMonument(String name);
+	public MonumentBean getMonument(long id);
 	
-	public List<MonumentBean> searchMonument(String name);
+	public List<AbstractLocationBean> searchMonument(String name);
+
 
 }

@@ -3,12 +3,10 @@ package fr.univ.upem.localHistory.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
 
 
 public class SearchBean {
 	
-	@NotNull
 	private String selected_match = null;
 	private String search_field;
 	private List<String> selected_matches ;

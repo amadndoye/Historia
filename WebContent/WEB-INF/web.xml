@@ -9,6 +9,9 @@
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
   
+   <welcome-file-list>
+    <welcome-file>jsf/index.xhtml</welcome-file>
+  </welcome-file-list>
 
 <!-- BootsFaces Config  --> 
 	<context-param>
@@ -35,9 +38,5 @@
     <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
     <param-value>client</param-value>
   </context-param>
-  
-  <welcome-file-list>
-    <welcome-file>jsf/index.xhtml</welcome-file>
-  </welcome-file-list>
   
 </web-app>

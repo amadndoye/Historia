@@ -13,7 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import fr.univ.upem.localHistory.beans.MuseumBean;
+import fr.univ.upem.localHistory.beans.AbstractLocationBean;
 import fr.univ.upem.localHistory.beans.SearchBean;
 import fr.univ.upem.localHistory.loockupService.MonumentLoockUpServiceMap;
 import fr.univ.upem.localHistory.loockupService.MuseumLoockUpServiceMap;
@@ -25,12 +25,10 @@ public class SearchManager implements Serializable{
 	
 	
 	private static final long serialVersionUID = -3391866230193825437L;
-	private  MonumentLoockUpServiceMap monumentLS ;
-	private  MuseumLoockUpServiceMap museumLS ;
+	private static  MonumentLoockUpServiceMap monumentLS ;
+	private  static MuseumLoockUpServiceMap museumLS ;
 	
-	private static ResourceBundle stringError;
-
-	private List<MuseumBean>result ;
+	private List<AbstractLocationBean>result ;
 	
 	private boolean hasResult ;
 	
@@ -60,10 +58,17 @@ public class SearchManager implements Serializable{
 		System.out.println("SearchManager.java :search :search.value : "+search.getSearch_value());
 
 		 result = museumLS.searchMuseum(search.getSearch_value(), 0);
+		 if(result != null){
+			 result.addAll(monumentLS.searchMonument(search.getSearch_value()));
+		 }
 		 hasResult = !result.isEmpty();
-		
-		System.out.println("SearchManager.java :search :search.value : "+search.getSearch_value() + " number of result : "+ result.size());
-		 addMessage("Search Succeed",FacesMessage.SEVERITY_INFO);
+		 if(!hasResult){
+			ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			 addMessage(stringText.getString("noMatch"), FacesMessage.SEVERITY_INFO);
+
+		 }
+		 System.out.println("SearchManager.java :search :search.value : "+search.getSearch_value() + " number of result : "+ result.size());
+
 
 	 }
 	 
@@ -71,13 +76,24 @@ public class SearchManager implements Serializable{
 		return search;
 	}
 	 
-	 public List<MuseumBean> getResult() {
+	 public List<AbstractLocationBean> getResult() {
 			return result;
 		}
 
 
 	public boolean isHasResult() {
 		return hasResult;
+	}
+
+
+	public static AbstractLocationBean get(long id, String type) {
+		if(type == "Museum"){
+			return museumLS.getMuseum(id);
+
+		}else{
+			return monumentLS.getMonument(id);
+
+		}
 	}
 	
 

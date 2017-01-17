@@ -15,14 +15,13 @@
 	
 		<h:form>
 		<b:panel>
-				<b:inputText value="#{userManager.user.userName}"  placeholder="#{stringButton.userName}" required="true" id="userName-id">
+				<b:inputText value="#{userManager.user.userName}"  placeholder="#{stringButton.userName}" required="true" id="userName-id">				
 					<f:facet name="prepend">
 						<b:label text="#{stringButton.userName} : " />
 						<b:iconAwesome name="user-o" />
 					</f:facet>
 				</b:inputText>		
 				<br/>
-				
 				<b:inputSecret value ="#{userManager.user.password}"  placeholder="#{stringButton.password}" required="true" id="password-id">	
 				<f:facet name="prepend">
 						<b:label text="#{stringButton.password} : "/>

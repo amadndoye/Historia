@@ -10,31 +10,21 @@
 		<title>#{stringText.homeTitle}</title>
 	</h:head>
 	
-	<b:form id="logout-form-id">
+		<b:form id="logout-form-id">
 			<b:commandButton actionListener="#{userManager.logout}" update="main-index" value="#{stringButton.logout}" />
 		</b:form><h:body>
-	<b:container id="main-home" >
-	
+		
 		<h1 class="title">User Name = "#{userManager.user.userName}"</h1>
 		<h1 class="title">Password = "#{userManager.user.password}"</h1>
 		<h1 class="title">Mail = "#{userManager.user.mail}"</h1>
-		<ui:include src="search.xhtml"></ui:include>
 		
-	
-	</b:container>
-	
-		<b:panel id="result-search">
-			<b:dataTable value="#{searchManager.result}" var="result" rendered="#{searchManager.hasResult}">
-			    <b:dataTableColumn label="result.name" >
-			    <b:form>
-			    	  <h:commandLink value="#{result.name}"/>
-			    </b:form>
-			    </b:dataTableColumn>
-			    <b:dataTableColumn value="#{result.city}" />
-			 </b:dataTable>
+		<b:container id="main-home" >
+			<ui:include src="search.xhtml"></ui:include>
+		</b:container>
 		
-		</b:panel>
-	
+		<b:container id="result-search">
+			<ui:include src="searchResult.xhtml"/>
+		</b:container>
 
 	</h:body>
 </html>

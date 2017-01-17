@@ -12,23 +12,23 @@
 	
 	<h:body>
 		<b:container id="main-index" >
-				<b:container id="form-index" rendered ="#{userManager.notLoggedIn}" >
-					<b:growl id="growl" life="10000" placementFrom="top" show-detail="true" global-only="false"
+			<b:growl id="growl" life="10000" placementFrom="top" show-detail="true" global-only="false"
         					show-summary="true" allow-dismiss="true" animation-enter="animated bounceInDown"
        						 animation-exit="animated flipOutX" escape="true" />
+       						 
+			<b:container id="form-index" rendered ="#{userManager.notLoggedIn}" >				
+				<b:container id="form-login" rendered="#{!userManager.showForm}">
+						<ui:include  src ="user/login.xhtml"  />
+				</b:container>
+					
+				<b:container id="form-registration" rendered="#{userManager.showForm}">
+						<ui:include src="user/registration.xhtml"/>
+				</b:container>
+			</b:container>	
 				
-					<b:container id="form-login" rendered="#{!userManager.showForm}">
-							<ui:include  src ="user/login.xhtml"  />
-					</b:container>
-						
-					<b:container id="form-registration" rendered="#{userManager.showForm}">
-							<ui:include src="user/registration.xhtml"/>
-					</b:container>
-				</b:container>	
-				
-				<b:container id="home-index" rendered="#{!userManager.notLoggedIn}">
-						 	<ui:include src="home/home.xhtml" />	 		
-				</b:container>	
+			<b:container id="home-index" rendered="#{!userManager.notLoggedIn}">
+						<ui:include src="home/home.xhtml" />	 		
+			</b:container>	
 		</b:container>
 				 	
 	</h:body>

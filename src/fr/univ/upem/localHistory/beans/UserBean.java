@@ -14,7 +14,7 @@ public class UserBean implements Serializable {
 	private long userId;
 	
 	public UserBean(){
-		setPreviousSearch(new ArrayList<SearchBean>());
+		this.previousSearch= new ArrayList<SearchBean>();
 		
 	}
 
@@ -22,7 +22,7 @@ public class UserBean implements Serializable {
 		this.userName = userName2;
 		password = password2;
 		setMail(mail2);
-		setPreviousSearch(new ArrayList<SearchBean>());
+		this.previousSearch= new ArrayList<SearchBean>();
 
 	}
 

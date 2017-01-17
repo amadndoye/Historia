@@ -26,8 +26,6 @@ public class UserManager implements Serializable{
 	private static final long serialVersionUID = 5087659609209633734L;
 
 	private UserBean user;
-
-	private static ResourceBundle stringError;
 	
 	private boolean showForm ;
 	private boolean isNotLoggedIn;
@@ -56,27 +54,29 @@ public class UserManager implements Serializable{
 		
 		System.out.println("UserManager.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
 		user = userLS.logIn(user);
-		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
 		if(user == null){
+			ResourceBundle stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 			addMessage(stringError.getString("userWrongID"),FacesMessage.SEVERITY_ERROR) ;
 			user = new UserBean();
 		}else{
-		    addMessage("login succeed",FacesMessage.SEVERITY_INFO);
-		     isNotLoggedIn = false;
+		    isNotLoggedIn = false;
+			ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+		    addMessage(stringText.getString("loginSucceed"),FacesMessage.SEVERITY_INFO);
 		}
 	  }
 	
 	public void registration(ActionEvent event){
 		System.out.println(" UserManager.java :registration :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		user = userLS.addUser(user);
-		stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 
 		if( user != null){
+			ResourceBundle stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 			addMessage(stringError.getString("userExiste"),FacesMessage.SEVERITY_ERROR);
 		}else{
 			showForm = false;
-			addMessage("registration succeed", FacesMessage.SEVERITY_INFO);
+			ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			addMessage(stringText.getString("registrationSucceed"), FacesMessage.SEVERITY_INFO);
 
 		}
 		user = new UserBean();
@@ -85,17 +85,20 @@ public class UserManager implements Serializable{
 	}
 	
 	  public void logout() {
-		  stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-		  System.out.println(" UserManager.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
-		  user = new UserBean();
-		  addMessage("log out", FacesMessage.SEVERITY_INFO);
-		  isNotLoggedIn = true;
+		ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+		System.out.println(" UserManager.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
+		user = new UserBean();
+		addMessage(stringText.getString("logOut"), FacesMessage.SEVERITY_INFO);
+		isNotLoggedIn = true;
 	  }
 	  
 	  public void cancel(ActionEvent event){
-		 System.out.println("UserManager.java :cancel form");
+		  System.out.println("UserManager.java :Registration Canceled");
 		  user = new UserBean();
 		  this.showForm = false;
+		  ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+		  addMessage(stringText.getString("cancelRegistration"), FacesMessage.SEVERITY_INFO);
+
 	  }
 
 	  
@@ -109,7 +112,6 @@ public class UserManager implements Serializable{
 	  
 	 public void addMessage(String summary, Severity severity) {
 			System.out.println("UserManager.java :summary :message : "+summary);
-
 	        FacesMessage message = new FacesMessage(severity, summary,  null);
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }
