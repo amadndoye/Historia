@@ -10,11 +10,5 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/javax.faces-api-2.2.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/Historia/libs/javax.faces-api-2.2-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/jsf-facelets.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

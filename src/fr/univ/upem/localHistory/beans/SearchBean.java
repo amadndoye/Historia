@@ -8,33 +8,31 @@ import java.util.List;
 public class SearchBean {
 	
 	private String selected_match = null;
-	private String search_field;
+	private String search_value;
 	private List<String> selected_matches ;
 	private long latitude;
 	private long  longitude;
 	private boolean isFree;
-	private boolean isMonument;
-	private boolean isMuseum;
+	private String type;
+	private String date ;
 	
 	public SearchBean() {
-		selected_matches = new ArrayList<String>();
-		selected_matches.add("Name");
-		selected_matches.add("Region");
-		selected_matches.add("Theme");
-		selected_matches.add("All");
-
 		isFree = true ;
-		isMonument = true ;
-		isMuseum = true;
+		type="Both";
+		selected_matches = new ArrayList<String>();
+		selected_matches.add("All");
+		selected_matches.add("Name");
+		selected_matches.add("City");
+		selected_matches.add("Theme");
 	
 	}
 
 	public String getSearch_value() {
-		return search_field;
+		return search_value;
 	}
 
 	public void setSearch_value(String search_value) {
-		this.search_field = search_value;
+		this.search_value = search_value;
 	}
 
 	public List<String> getSelected_matches() {
@@ -69,26 +67,6 @@ public class SearchBean {
 		this.isFree = isFree;
 	}
 
-	public boolean isMonument() {
-		return isMonument;
-	}
-
-
-	public void setMonument(boolean isMonument) {
-		this.isMonument = isMonument;
-	}
-
-
-	public boolean isMuseum() {
-		return isMuseum;
-	}
-
-
-	public void setMuseum(boolean isMuseum) {
-		this.isMuseum = isMuseum;
-	}
-
-
 	public String getSelected_match() {
 		return selected_match;
 	}
@@ -96,5 +74,21 @@ public class SearchBean {
 
 	public void setSelected_match(String selected_match) {
 		this.selected_match = selected_match;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

@@ -15,24 +15,28 @@
 		<b:form id="search-form-id"  >
 		   	<b:row >
 		
-				<b:inputText value="#{searchManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}"  span="6">
+				<b:inputText value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" required="true" span="6">
 				   <f:facet name="append"> 
-	 				<b:commandButton value ="#{stringButton.submit}" update="main-index" actionListener="#{searchManager.search}"/>
+	 				<b:commandButton value ="#{stringButton.submit}" update="main-index" actionListener="#{userManager.search}"/>
 				   </f:facet>
 				
 				</b:inputText>
 			</b:row>
-			<b:row >
-			    <b:selectBooleanCheckbox span="1" value="#{searchManager.search.free}" label="#{stringButton.checkboxFree}" id ="is-free-id" />
-			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.museum}" label="#{stringButton.checkboxMuseum}" id = "is-museum-id"/>
-			    <b:selectBooleanCheckbox span="1"  value="#{searchManager.search.monument}" label="#{stringButton.checkboxMonument}" id= "is-monument-id" />
-		    </b:row>
-   			 <b:row>
-   				<b:selectMultiMenu value="#{searchManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">		                 
-		              <f:selectItems value="#{searchManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
-				</b:selectMultiMenu>								    
-   			</b:row>
-		        
+			   <b:panelGrid size="xs" columns="3">
+			      	 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxBoth}" id ="is-both-id" itemValue="Both" />
+   					 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMuseum}" id="is-museum-id" itemValue="Museum"/>
+   					 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMonument}" id="is-monument-id" itemValue="Monument"/>
+  			 </b:panelGrid>
+  			 
+  			 <b:panel collapsed="true" title="Museum More" id="museum-more">
+			 <b:panelGrid size="xs" columns="2"  >
+   				<b:selectOneMenu value="#{userManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">
+		              <f:selectItems value="#{userManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
+				</b:selectOneMenu>								    
+				<b:selectBooleanCheckbox span="1" value="#{userManager.search.free}" label="#{stringButton.checkboxFree}" id ="is-free-id" />
+		      </b:panelGrid>
+		      </b:panel>
+		      
 		</b:form>
 		</b:panel>
 		

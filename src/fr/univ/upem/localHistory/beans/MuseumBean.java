@@ -3,6 +3,8 @@ package fr.univ.upem.localHistory.beans;
 
 public class MuseumBean extends AbstractLocationBean{
 	
+
+	private static final long serialVersionUID = 8200204668525482940L;
 	private String name;
 	private String adresse;
 	private String city;
@@ -25,7 +27,7 @@ public class MuseumBean extends AbstractLocationBean{
 	private String horaires ;
 	
 	
-	private boolean gratuit;
+	private boolean free;
 		
 	public MuseumBean(){
 		super("Museum");
@@ -134,11 +136,11 @@ public class MuseumBean extends AbstractLocationBean{
 		this.horaires = horaires;
 	}
 	
-	public boolean isGratuit() {
-		return gratuit;
+	public boolean isFree() {
+		return free;
 	}
-	public void setGratuit(boolean gratuit) {
-		this.gratuit = gratuit;
+	public void setFree(boolean free) {
+		this.free = free;
 	}
 
 	public String getCity() {

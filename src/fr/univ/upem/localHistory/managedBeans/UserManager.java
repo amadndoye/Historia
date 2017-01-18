@@ -1,6 +1,9 @@
 package fr.univ.upem.localHistory.managedBeans;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -8,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -21,8 +25,6 @@ import fr.univ.upem.localHistory.loockupService.UserLoockUpServiceMap;
 @SessionScoped
 public class UserManager implements Serializable{
 	
-
-	
 	private static final long serialVersionUID = 5087659609209633734L;
 
 	private UserBean user;
@@ -30,9 +32,12 @@ public class UserManager implements Serializable{
 	private boolean showForm ;
 	private boolean isNotLoggedIn;
 
+	private  SearchBean search;
 	
+	@ManagedProperty("#{searchManager}")
+	private SearchManager searchManager;
+
 	private IUserLoockUpService userLS ;
-	
 	
 	public UserBean getUser(){
 		return user;
@@ -45,6 +50,7 @@ public class UserManager implements Serializable{
 		 user = new UserBean();
 		 showForm =false ;
 		 isNotLoggedIn = true;
+		 search = new SearchBean();
 		System.out.println("UserManager.java PostConstruct: UserManager finished initializing");
 
 	}
@@ -121,9 +127,33 @@ public class UserManager implements Serializable{
 		return isNotLoggedIn;
 	}
 	
-	public void addResearch(List<SearchBean> listOfSurch){
-		user.setPreviousSearch(listOfSurch);
+	public void addResearch(SearchBean lastSearch){
+		List<SearchBean>s = user.getPreviousSearch();
+		if(s==null ){
+			s = new ArrayList<SearchBean>();
+		}
+		s.add(lastSearch);
+		user.setPreviousSearch(s);
 		
 	}
-	
+	 public SearchBean getSearch() {
+			return search;
+	 }
+	 
+	 public void  search(ActionEvent event){
+		search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+		searchManager.search(search);
+		addResearch(search);
+		search = new SearchBean();
+		 
+	 }
+
+	public SearchManager getSearchManager() {
+		return searchManager;
+	}
+
+	public void setSearchManager(SearchManager searchManager) {
+		this.searchManager = searchManager;
+	}
+
 }

@@ -1,8 +1,6 @@
 package fr.univ.upem.localHistory.managedBeans;
 
 
-import java.util.ResourceBundle;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;

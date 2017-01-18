@@ -1,6 +1,10 @@
 package fr.univ.upem.localHistory.beans;
 
-public abstract class AbstractLocationBean {
+import java.io.Serializable;
+
+public abstract class AbstractLocationBean implements Serializable{
+	
+	private static final long serialVersionUID = -8824598600667342320L;
 	private long id;
 	private String type;
 	protected long latitude;

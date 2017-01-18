@@ -11,8 +11,10 @@ import fr.univ.upem.localHistory.beans.MonumentBean;
 
 public class MonumentLoockUpServiceMap implements IMonumentLoockUpService, ILocationLoockUpService {
 
-private Map<Long,MonumentBean> monuments ;
-private long currentId  ;
+
+	private static final long serialVersionUID = -1591550952675046727L;
+	private Map<Long,MonumentBean> monuments ;
+	private long currentId  ;
 
 	public MonumentLoockUpServiceMap() {
 		monuments = new HashMap<Long, MonumentBean>();
@@ -59,7 +61,7 @@ private long currentId  ;
 	public List<AbstractLocationBean> searchMonument(String name) {
 		ArrayList <AbstractLocationBean> bean = new ArrayList<>();
 		for(MonumentBean x : monuments.values()){
-			if(x.getName().toUpperCase().contains(name.toUpperCase())){
+			if(x.getName()!=null && x.getName().toUpperCase().contains(name.toUpperCase())){
 				bean.add(x);
 			}
 		}

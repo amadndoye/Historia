@@ -7,12 +7,15 @@ import java.util.Map;
 
 import fr.univ.upem.localHistory.beans.AbstractLocationBean;
 import fr.univ.upem.localHistory.beans.MuseumBean;
+import fr.univ.upem.localHistory.beans.SearchBean;
 
 
 public class MuseumLoockUpServiceMap implements IMuseumLoockUpService, ILocationLoockUpService {
 
-private Map<Long,MuseumBean> museums ;
-private long currentId  ;
+
+	private static final long serialVersionUID = -255460405361319002L;
+	private Map<Long,MuseumBean> museums ;
+	private long currentId  ;
 	
 	public MuseumLoockUpServiceMap() {
 		museums = new HashMap<Long, MuseumBean>();
@@ -55,12 +58,46 @@ private long currentId  ;
 	}
 
 	@Override
-	public List<AbstractLocationBean> searchMuseum(String value, int type) {
+	public List<AbstractLocationBean> searchMuseum(SearchBean search) {
 		ArrayList <AbstractLocationBean> bean = new ArrayList<>();
-		for(MuseumBean x : museums.values()){
-			if(x.getName().toUpperCase().contains(value.toUpperCase())){
-				bean.add(x);
+		String match = search.getSelected_match();
+		if(match == null){
+			return bean;
+		}
+		if(search.getSearch_value()!= null || !search.getSearch_value().isEmpty()){
+			String value = search.getSearch_value().toUpperCase();
+			for(MuseumBean x : museums.values()){
+				if(search.isFree()){
+					if(x.isFree()){
+						continue;
+					}
+				}
+				if(match.equals("All")){
+					if((x.getName()!= null && x.getName().toUpperCase().contains(value))
+					|| (x.getCity()!= null && x.getCity().toUpperCase().contains(value))
+					|| (x.getThemes()!=null && x.getThemes().toUpperCase().contains(value))){	
+						bean.add(x);
+					}
+				}else if(match.equals("City")){
+					if(x.getCity()!=null && x.getCity().toUpperCase().contains(value)){
+						bean.add(x);
+
+					}
+
+				}else if(match.equals("Name")){
+					if(x.getName()!=null && x.getName().toUpperCase().contains(value)){
+						bean.add(x);
+
+					}
+
+				}else if(match.equals("Theme")){
+					if(x.getThemes()!=null && x.getThemes().toUpperCase().contains(value)){
+						bean.add(x);
+
+					}
+				}
 			}
+		
 		}
 		return bean;
 	}

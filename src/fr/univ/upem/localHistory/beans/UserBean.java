@@ -12,6 +12,7 @@ public class UserBean implements Serializable {
 	private String mail; 
 	private List<SearchBean> previousSearch;
 	private long userId;
+	private boolean hasHistory;
 	
 	public UserBean(){
 		this.previousSearch= new ArrayList<SearchBean>();
@@ -47,12 +48,11 @@ public class UserBean implements Serializable {
 	}
 
 	public void setPreviousSearch(List<SearchBean> previousSearch) {
-		if(this.previousSearch.isEmpty()){
-			this.previousSearch = previousSearch;
-
-		}else{
-			this.previousSearch.addAll(previousSearch);
+		this.previousSearch = previousSearch;
+		if(this.previousSearch!=null && !this.previousSearch.isEmpty()){
+			hasHistory = true;
 		}
+
 	}
 
 	public long getUserId() {
@@ -70,5 +70,15 @@ public class UserBean implements Serializable {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
+
+	public boolean isHasHistory() {
+		return hasHistory;
+	}
+
+	public void setHasHistory(boolean hasHistory) {
+		this.hasHistory= hasHistory;
+	}
+
+	
 	
 }

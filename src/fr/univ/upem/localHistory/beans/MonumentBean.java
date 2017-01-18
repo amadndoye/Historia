@@ -3,6 +3,8 @@ package fr.univ.upem.localHistory.beans;
 
 public class MonumentBean extends AbstractLocationBean {
 	
+	
+	private static final long serialVersionUID = -5425067605553684478L;
 	private String name;
 		
 	public MonumentBean(){
