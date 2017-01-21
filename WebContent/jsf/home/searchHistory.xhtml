@@ -10,12 +10,18 @@
 	</h:head>
 	<h:body>
 		<b:panel  title="Research history">
-			<b:dataTable value="#{userManager.user.previousSearch}" var="result" searching="false">
+			<b:dataTable value="#{userManager.user.previousSearch}" var="result" searching="false" striped="false" border="false" >
 			    <b:dataTableColumn label="Previous Imput">
-			    	<h:link value="#{result.search_value}" outcome="template/templateElement.xhtml">	   					 
-					</h:link>
+			    	<b:navLink value="#{result.search_value}" update="result-search-id search-form-id" ajax="true" onclick="ajax:userManager.searchAgain(result)">	   					 
+					</b:navLink>
 			    </b:dataTableColumn>
 			    <b:dataTableColumn value="#{result.date}" />
+			    <b:dataTableColumn>
+			    	<h:form>
+    			    <b:commandButton value="#{stringButton.delete}" iconAwesome="fa-trash-o" look="danger" ajax="true" update="search-history-id"
+           							 onclick="ajax:userManager.deleteSearch(result)"/>
+           			</h:form>
+       			</b:dataTableColumn>
 			 </b:dataTable>
 		
 		</b:panel>

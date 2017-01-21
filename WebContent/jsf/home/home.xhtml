@@ -2,9 +2,12 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+	  xmlns:of="http://omnifaces.org/functions"
+	  xmlns:m="http://code.google.com/p/gmaps4jsf/">
 	  
 	<h:head>
 		<title>#{stringText.homeTitle}</title>
@@ -17,15 +20,18 @@
 		<h1 class="title">User Name = "#{userManager.user.userName}"</h1>
 		<h1 class="title">Password = "#{userManager.user.password}"</h1>
 		<h1 class="title">Mail = "#{userManager.user.mail}"</h1>
-		<b:container id="history" >
+		<b:container id="search-history-id" >
 			<ui:include src="searchHistory.xhtml"></ui:include>
 		</b:container>
-		<b:container id="main-home" >
+		<b:container id="search-form-id" >
 			<ui:include src="search.xhtml"></ui:include>
 		</b:container>
-		
-		<b:container id="result-search">
+		<b:container id="result-search-id">
 			<ui:include src="searchResult.xhtml"/>
+		</b:container>
+		<b:container id="map-search-id">
+		
+				
 		</b:container>
 
 	</h:body>

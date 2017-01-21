@@ -12,12 +12,14 @@
 	<h:body >
 		<b:panel>
 	
-		<b:form id="search-form-id"  >
+		<b:form >
 		   	<b:row >
 		
 				<b:inputText value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" required="true" span="6">
 				   <f:facet name="append"> 
-	 				<b:commandButton value ="#{stringButton.submit}" update="main-index" actionListener="#{userManager.search}"/>
+	 				<b:commandButton value ="#{stringButton.submit}" update="result-search-id" actionListener="#{userManager.search}"/>
+	 				<b:commandButton value ="#{stringButton.clear}" update="result-search-id search-form-id" actionListener="#{userManager.clear}" look="danger"/>
+	 				
 				   </f:facet>
 				
 				</b:inputText>

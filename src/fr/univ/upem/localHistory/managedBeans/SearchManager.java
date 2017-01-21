@@ -91,6 +91,11 @@ public class SearchManager implements Serializable{
 
 		}
 	}
+
+
+	public void clear() {
+		result = null;
+	}
 	
 
 }

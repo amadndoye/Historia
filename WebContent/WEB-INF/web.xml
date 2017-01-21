@@ -4,6 +4,12 @@
     <servlet-name>Faces Servlet</servlet-name>
     <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+	<servlet-name>SourceCodeServlet</servlet-name>	
+	<servlet-class>com.googlecode.gmaps4jsf.util.SourceCodeServlet</servlet-class>
+	</servlet>
+	
   <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
@@ -13,6 +19,7 @@
     <welcome-file>jsf/index.xhtml</welcome-file>
   </welcome-file-list>
 
+	
 <!-- BootsFaces Config  --> 
 	<context-param>
   	 	<param-name>javax.faces.FACELETS_DECORATORS</param-name>

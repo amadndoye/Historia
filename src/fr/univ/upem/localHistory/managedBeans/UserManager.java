@@ -106,6 +106,35 @@ public class UserManager implements Serializable{
 		  addMessage(stringText.getString("cancelRegistration"), FacesMessage.SEVERITY_INFO);
 
 	  }
+	  public void clear(ActionEvent event){
+		  System.out.println("UserManager.java :clear Search");
+		  search= new SearchBean();
+		  searchManager.clear();
+		  ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+		  addMessage(stringText.getString("clearSearch"), FacesMessage.SEVERITY_INFO);
+
+	  }
+	  
+	  public void deleteSearch(SearchBean search){
+		  System.out.println("UserManager.java :delete Search");
+		  List<SearchBean> searchList = user.getPreviousSearch();
+		  if(searchList.remove(search)){
+			  user.setPreviousSearch(searchList);
+			  ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			  addMessage(stringText.getString("searchDeleted"), FacesMessage.SEVERITY_INFO);
+
+		  }
+		 
+	  }
+	  public void searchAgain(SearchBean searchAgain){
+		  System.out.println("UserManager.java :searchAgain");
+		  	this.search = searchAgain;
+		  	search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+			searchManager.search(search);
+			//search = new SearchBean();
+		 
+		 
+	  }
 
 	  
 	public boolean isShowForm() {
