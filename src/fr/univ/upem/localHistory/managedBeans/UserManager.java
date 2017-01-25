@@ -30,7 +30,6 @@ public class UserManager implements Serializable{
 	private UserBean user;
 	
 	private boolean showForm ;
-	private boolean isNotLoggedIn;
 
 	private  SearchBean search;
 	
@@ -38,6 +37,9 @@ public class UserManager implements Serializable{
 	private SearchManager searchManager;
 
 	private IUserLoockUpService userLS ;
+	
+	private float latitude;
+	private float longitude;
 	
 	public UserBean getUser(){
 		return user;
@@ -49,14 +51,13 @@ public class UserManager implements Serializable{
 		 userLS = new UserLoockUpServiceMap();
 		 user = new UserBean();
 		 showForm =false ;
-		 isNotLoggedIn = true;
 		 search = new SearchBean();
 		System.out.println("UserManager.java PostConstruct: UserManager finished initializing");
 
 	}
 
 	
-	public void login (ActionEvent event) {
+	public String login () {
 		
 		System.out.println("UserManager.java :login :userName : "+user.getUserName() + " password :"+user.getPassword());
 		user = userLS.logIn(user);
@@ -65,10 +66,12 @@ public class UserManager implements Serializable{
 			ResourceBundle stringError = ResourceBundle.getBundle("StringError", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 			addMessage(stringError.getString("userWrongID"),FacesMessage.SEVERITY_ERROR) ;
 			user = new UserBean();
+		    return "faillure";
+
 		}else{
-		    isNotLoggedIn = false;
 			ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 		    addMessage(stringText.getString("loginSucceed"),FacesMessage.SEVERITY_INFO);
+		    return "success";
 		}
 	  }
 	
@@ -90,20 +93,24 @@ public class UserManager implements Serializable{
 		
 	}
 	
-	  public void logout() {
+	  public String logout() {
 		ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
 		System.out.println(" UserManager.java :logout :userName : "+user.getUserName() + " password :"+user.getPassword() + " mail : "+user.getMail());
 		user = new UserBean();
+		search= new SearchBean();
+		searchManager.clear();
 		addMessage(stringText.getString("logOut"), FacesMessage.SEVERITY_INFO);
-		isNotLoggedIn = true;
+	    return "success";
+
 	  }
 	  
 	  public void cancel(ActionEvent event){
 		  System.out.println("UserManager.java :Registration Canceled");
 		  user = new UserBean();
 		  this.showForm = false;
+		  searchManager.clear();
 		  ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-		  addMessage(stringText.getString("cancelRegistration"), FacesMessage.SEVERITY_INFO);
+		  addMessage(stringText.getString("cancelRegistration"), FacesMessage.SEVERITY_WARN);
 
 	  }
 	  public void clear(ActionEvent event){
@@ -121,22 +128,12 @@ public class UserManager implements Serializable{
 		  if(searchList.remove(search)){
 			  user.setPreviousSearch(searchList);
 			  ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
-			  addMessage(stringText.getString("searchDeleted"), FacesMessage.SEVERITY_INFO);
+			  addMessage(stringText.getString("searchDeleted"), FacesMessage.SEVERITY_WARN);
 
 		  }
 		 
 	  }
-	  public void searchAgain(SearchBean searchAgain){
-		  System.out.println("UserManager.java :searchAgain");
-		  	this.search = searchAgain;
-		  	search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-			searchManager.search(search);
-			//search = new SearchBean();
-		 
-		 
-	  }
-
-	  
+	  	  
 	public boolean isShowForm() {
 		return showForm;
 	}
@@ -151,11 +148,6 @@ public class UserManager implements Serializable{
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 	    }
 
-
-	public boolean isNotLoggedIn() {
-		return isNotLoggedIn;
-	}
-	
 	public void addResearch(SearchBean lastSearch){
 		List<SearchBean>s = user.getPreviousSearch();
 		if(s==null ){
@@ -170,12 +162,30 @@ public class UserManager implements Serializable{
 	 }
 	 
 	 public void  search(ActionEvent event){
-		search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
-		searchManager.search(search);
-		addResearch(search);
-		search = new SearchBean();
+		 if(search.getSearch_value().isEmpty()){
+			 ResourceBundle stringText = ResourceBundle.getBundle("StringText", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+			 addMessage(stringText.getString("searchEmpty"), FacesMessage.SEVERITY_WARN);
+			 search= new SearchBean();
+			 searchManager.clear();
+		 }else{
+			search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+			searchManager.search(search);
+			addResearch(search);
+			search = new SearchBean();
+		 }
+		
 		 
 	 }
+	 
+	 public void searchAgain(SearchBean searchAgain){
+		  System.out.println("UserManager.java :searchAgain");
+		  	this.search = searchAgain;
+		  	search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+			searchManager.search(search);
+			search = new SearchBean();
+		 
+		 
+	  }
 
 	public SearchManager getSearchManager() {
 		return searchManager;
@@ -184,5 +194,23 @@ public class UserManager implements Serializable{
 	public void setSearchManager(SearchManager searchManager) {
 		this.searchManager = searchManager;
 	}
+	
+	public String setPosition(){
+		 System.out.println("UserManager.java :setPosition : latitude = "+latitude +" longitude = "+longitude);
+		return "";
+	}
+	
+	public float getLatitude(){
+		return latitude;
+	}
+	public float getLongitude(){
+		return longitude;
+	}
 
+	public void setLatitude( float x){
+		latitude = x;
+	}
+	public void setLongitude(float y){
+		 longitude = y ;
+	}
 }

@@ -19,18 +19,7 @@ public class MuseumLoockUpServiceMap implements IMuseumLoockUpService, ILocation
 	
 	public MuseumLoockUpServiceMap() {
 		museums = new HashMap<Long, MuseumBean>();
-		currentId = 0 ; 
-		museums.put(currentId,new MuseumBean(currentId,"Musée du Louvre", "ILE-DE-FRANCE"));
-		currentId++;
-		museums.put(currentId,new MuseumBean(currentId,"Musée Français de la Photographie", "ILE-DE-FRANCE"));
-		currentId++;
-
-		museums.put(currentId,new MuseumBean(currentId,"Musée d'Art Sacré", "DIJON"));
-		currentId++;
-
-		museums.put(currentId,new MuseumBean(currentId,"Musée de la Mine", "LA MACHINE"));
-		currentId++;
-
+		
 	}
 	
 	@Override
@@ -104,6 +93,36 @@ public class MuseumLoockUpServiceMap implements IMuseumLoockUpService, ILocation
 
 	public Map<Long,MuseumBean> getMuseums() {
 		return museums;
+	}
+	
+	public void init(){
+		currentId = 0 ; 
+		museums.put(currentId,new MuseumBean(currentId,"Musée de la Folie Marco", "BARR"));
+		museums.get(currentId).setAdresse("30, Rue du Dr Sultzer");
+		museums.get(currentId).setCountry("France");
+		museums.get(currentId).setCodePostal(67140);
+		currentId++;
+		museums.put(currentId,new MuseumBean(currentId,"Ecomusée de la Grande Lande", "SABRES"));
+		museums.get(currentId).setAdresse("Route de Soférino");
+		museums.get(currentId).setCountry("France");
+		museums.get(currentId).setCodePostal(40630);
+
+		currentId++;
+
+		museums.put(currentId,new MuseumBean(currentId,"Maison de la Magie", "BLOIS"));
+		museums.get(currentId).setAdresse("1, Place du Château");
+		museums.get(currentId).setCountry("France");
+		museums.get(currentId).setCodePostal(41000);
+
+		currentId++;
+
+		museums.put(currentId,new MuseumBean(currentId,"Musée Roybet Fould", "COURBEVOIE"));
+		museums.get(currentId).setAdresse("Parc de Bécon 178, Boulevard Saint Denis");
+		museums.get(currentId).setCountry("France");
+		museums.get(currentId).setCodePostal(92400);
+
+		currentId++;
+
 	}
 
 

@@ -5,34 +5,63 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:o="http://omnifaces.org/ui"
-	  xmlns:of="http://omnifaces.org/functions"
-	  xmlns:m="http://code.google.com/p/gmaps4jsf/">
+       xmlns:o="http://omnifaces.org/ui"
+	  xmlns:of="http://omnifaces.org/functions">
 	  
 	<h:head>
-		<title>#{stringText.homeTitle}</title>
+		<title>#{stringText.homeTitle}</title>	
+		<script src="https://maps.googleapis.com/maps/api/js?file=api&amp;v=3&amp;key=AIzaSyCfXN_jHK2GsK3xbGC0L_QH89tb_WsU9N8" type="text/javascript"/>
+			
 	</h:head>
-	
+	<h:body>
+		<h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+		<h:outputScript library="omnifaces" name="fixviewstate.js" target="head" />
+		
+		<o:deferredScript name="findMe.js" type="text/javascript" />
+		
+		<b:container id="info-home">
+			<h1 class="title">User Name = "#{userManager.user.userName}"</h1>
+			<h1 class="title">Password = "#{userManager.user.password}"</h1>
+			<h1 class="title">Mail = "#{userManager.user.mail}"</h1>
+			<h1>latitude = "#{userManager.latitude}"  longitude = "#{userManager.longitude}" </h1>
+		</b:container>
+		
+		<h:form id="formId">
+	    	<h:inputHidden id="latitude" value="#{userManager.latitude}" />
+	   		<h:inputHidden id="longitude" value="#{userManager.longitude}" />	   		
+	    	<b:commandButton value="findMe" update="info-home map-search-id" />
+		</h:form>
+		
 		<b:form id="logout-form-id">
-			<b:commandButton actionListener="#{userManager.logout}" update="main-index" value="#{stringButton.logout}" />
-		</b:form><h:body>
-		
-		<h1 class="title">User Name = "#{userManager.user.userName}"</h1>
-		<h1 class="title">Password = "#{userManager.user.password}"</h1>
-		<h1 class="title">Mail = "#{userManager.user.mail}"</h1>
-		<b:container id="search-history-id" >
-			<ui:include src="searchHistory.xhtml"></ui:include>
-		</b:container>
-		<b:container id="search-form-id" >
-			<ui:include src="search.xhtml"></ui:include>
-		</b:container>
-		<b:container id="result-search-id">
-			<ui:include src="searchResult.xhtml"/>
-		</b:container>
-		<b:container id="map-search-id">
-		
+			<b:commandButton action="#{userManager.logout}" update="growl-home" value="#{stringButton.logout}" />
+		</b:form>
+			
+		<b:panel col-xs="6" col-sm="6" col-md="4"  title= "Research form">
+				<b:container id="search-form-id" fluid="true" >
+					<ui:include src="search.xhtml" ></ui:include>
+				</b:container>
 				
-		</b:container>
-
+				<b:panel id="search-history-id" title="Previous research" >
+					<ui:include src="searchHistory.xhtml"></ui:include>
+				</b:panel>
+			
+		</b:panel>
+		
+		<b:panel col-xs="10" col-sm="6" col-md="8" title= "Research result">
+		<b:container id="result-search-id" fluid="true" >
+				 <ui:include src="searchResult.xhtml"/>
+			</b:container>
+			
+			<b:panel id="map-search-id" title="Map View"  collapsed="false"  col-xs="12" col-sm="6" col-md="8" >	
+				 	<ui:include src="searchMap.xhtml"></ui:include>
+			</b:panel>
+				
+		</b:panel>
+		
+		<b:growl id="growl-home" life="1000" placementFrom="top" show-detail="false" global-only="false"
+	       					show-summary="true" allow-dismiss="true" animation-enter="animated bounceInDown"
+	      						 animation-exit="animated flipOutX" escape="true"   />
+				 	
 	</h:body>
 </html>

@@ -1,12 +1,14 @@
 package fr.univ.upem.localHistory.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-
-public class SearchBean {
+public class SearchBean implements Serializable{
 	
+	
+	private static final long serialVersionUID = -7847882994427618448L;
 	private String selected_match = null;
 	private String search_value;
 	private List<String> selected_matches ;
@@ -91,4 +93,5 @@ public class SearchBean {
 	public void setDate(String date) {
 		this.date = date;
 	}
+
 }

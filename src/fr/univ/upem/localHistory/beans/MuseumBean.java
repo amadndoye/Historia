@@ -57,17 +57,17 @@ public class MuseumBean extends AbstractLocationBean{
 	public void setRegion(String region) {
 		this.department = region;
 	}
-	public int getLieuCodePostal() {
+	public int getCodePostal() {
 		return codePostal;
 	}
-	public void setLieuCodePostal(int lieuCodePostal) {
+	public void setCodePostal(int lieuCodePostal) {
 		this.codePostal = lieuCodePostal;
 	}
-	public String getPays() {
+	public String getCountry() {
 		return country;
 	}
-	public void setPays(String pays) {
-		this.country = pays;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 	public String getPhone() {
 		return phone;

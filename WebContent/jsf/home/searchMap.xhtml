@@ -7,24 +7,41 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:o="http://omnifaces.org/ui"
 	  xmlns:of="http://omnifaces.org/functions"
-	  xmlns:m="http://code.google.com/p/gmaps4jsf/">
+	  xmlns:m="http://code.google.com/p/gmaps4jsf/"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core">
 	  
-	<h:head>
-	<script src="https://maps.googleapis.com/maps/api/js?file=api&amp;v=3&amp;key=AIzaSyCfXN_jHK2GsK3xbGC0L_QH89tb_WsU9N8" type="text/javascript">
-    </script> 
+	<h:head>	
 	</h:head>
-	
+	 
 	<h:body>
-	<h:form id="form">
-                 <m:map width="500" height="450px" enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true">
-                     <m:marker latitude="30.01" longitude="31.14">
-						<m:htmlInformationWindow htmlText="Egypt"/>
-                     </m:marker>
-                     <m:marker latitude="40.10" longitude="50.20">
-						<m:htmlInformationWindow htmlText="Egypt2"/>
-                     </m:marker>
-                  </m:map>
-                     
-             </h:form>
+	
+			
+		<h:form >	
+            <m:map  enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true"  >
+            	<ui:fragment rendered="#{userManager.latitude != 0}" >
+            
+	            	<m:marker latitude="#{userManager.latitude}" longitude="#{userManager.longitude}" >
+						<m:htmlInformationWindow htmlText="moi"/>
+	             	</m:marker>
+	            </ui:fragment>
+	             
+             	<ui:repeat var="resultmap" value="#{searchManager.result}">
+	             	<ui:fragment rendered="#{resultmap.museum}" >
+	             		<m:marker address="#{resultmap.adresse}, #{resultmap.city} #{resultmap.country}">
+							<m:htmlInformationWindow htmlText="#{resultmap.name}"/>
+		                </m:marker>
+	             	</ui:fragment>
+	             	<ui:fragment rendered="#{not resultmap.museum}" >
+	             		<m:marker latitude="#{resultmap.latitude}" longitude="#{resultmap.longitude}">
+							<m:htmlInformationWindow htmlText="#{resultmap.name}"/>
+	                	</m:marker>
+	             		
+	             	</ui:fragment>
+             	             
+       		 </ui:repeat>
+                
+                
+             </m:map>
+        </h:form>
 	</h:body>
 </html>

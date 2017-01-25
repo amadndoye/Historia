@@ -9,39 +9,30 @@
 	<h:head>
 	</h:head>
 	
-	<h:body >
-		<b:panel>
-	
+	<h:body >	
 		<b:form >
 		   	<b:row >
-		
-				<b:inputText value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" required="true" span="6">
+				<b:inputText value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" >
 				   <f:facet name="append"> 
-	 				<b:commandButton value ="#{stringButton.submit}" update="result-search-id" actionListener="#{userManager.search}"/>
-	 				<b:commandButton value ="#{stringButton.clear}" update="result-search-id search-form-id" actionListener="#{userManager.clear}" look="danger"/>
-	 				
+	 				<b:commandButton value ="#{stringButton.submit}" update="result-search-id search-history-id map-search-id growl-home" actionListener="#{userManager.search}"/>
+	 				<b:commandButton value ="#{stringButton.clear}" update="result-search-id search-form-id map-search-id growl-home" actionListener="#{userManager.clear}" look="danger"/>
 				   </f:facet>
 				
 				</b:inputText>
 			</b:row>
-			   <b:panelGrid size="xs" columns="3">
-			      	 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxBoth}" id ="is-both-id" itemValue="Both" />
-   					 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMuseum}" id="is-museum-id" itemValue="Museum"/>
-   					 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMonument}" id="is-monument-id" itemValue="Monument"/>
-  			 </b:panelGrid>
-  			 
-  			 <b:panel collapsed="true" title="Museum More" id="museum-more">
+		      	 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxBoth}" id ="is-both-id" itemValue="Both" />
+  				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMuseum}" id="is-museum-id" itemValue="Museum" />
+  				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMonument}" id="is-monument-id" itemValue="Monument"/>
+ 			 
+  			 <b:panel collapsed="true" title="Museum More Details" id="museum-more">
 			 <b:panelGrid size="xs" columns="2"  >
    				<b:selectOneMenu value="#{userManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">
 		              <f:selectItems value="#{userManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
 				</b:selectOneMenu>								    
 				<b:selectBooleanCheckbox span="1" value="#{userManager.search.free}" label="#{stringButton.checkboxFree}" id ="is-free-id" />
 		      </b:panelGrid>
-		      </b:panel>
-		      
-		</b:form>
-		</b:panel>
-		
+		      </b:panel>     
+		</b:form>		
 		
 	</h:body>
 </html>

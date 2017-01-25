@@ -18,17 +18,6 @@ public class MonumentLoockUpServiceMap implements IMonumentLoockUpService, ILoca
 
 	public MonumentLoockUpServiceMap() {
 		monuments = new HashMap<Long, MonumentBean>();
-		currentId = 0 ; 
-		monuments.put(currentId,new MonumentBean(currentId,"Musée du Louvre", "ILE-DE-FRANCE"));
-		currentId++;
-		monuments.put(currentId,new MonumentBean(currentId,"Musée Français de la Photographie", "ILE-DE-FRANCE"));
-		currentId++;
-
-		monuments.put(currentId,new MonumentBean(currentId,"Musée d'Art Sacré", "DIJON"));
-		currentId++;
-
-		monuments.put(currentId,new MonumentBean(currentId,"Musée de la Mine", "LA MACHINE"));
-		currentId++;
 
 	}
 	@Override
@@ -66,6 +55,28 @@ public class MonumentLoockUpServiceMap implements IMonumentLoockUpService, ILoca
 			}
 		}
 		return bean;
+	}
+	public void init() {
+
+		currentId = 0 ; 
+		monuments.put(currentId,new MonumentBean(currentId,"La Statue de la Liberté", "ILE-DE-FRANCE"));
+		monuments.get(currentId).setLatitude(40.689249);
+		monuments.get(currentId).setLongitude(-74.0445);
+		currentId++;
+		monuments.put(currentId,new MonumentBean(currentId,"Palais de L'élysé", "ILE-DE-FRANCE"));
+		monuments.get(currentId).setLatitude(48.870416);
+		monuments.get(currentId).setLongitude(2.316754);
+		currentId++;
+
+		monuments.put(currentId,new MonumentBean(currentId,"Opéra de National", "DIJON"));
+		monuments.get(currentId).setLatitude(44.842507);
+		monuments.get(currentId).setLongitude(-0.574178);
+		currentId++;
+
+		monuments.put(currentId,new MonumentBean(currentId,"Basilique de Saint-Michel", "LA MACHINE"));
+		monuments.get(currentId).setLatitude(44.834401);
+		monuments.get(currentId).setLongitude(-0.565021);
+		currentId++;
 	}
 	
 

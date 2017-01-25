@@ -35,7 +35,9 @@ public class SearchManager implements Serializable{
 	public void init() {
 		System.out.println("SearchManager.java : PostConstruct: SearChManager is initializing");
 		monumentLS = new MonumentLoockUpServiceMap();
+		monumentLS.init();
 		museumLS = new MuseumLoockUpServiceMap();
+		museumLS.init();
 		result = new ArrayList<>();
 		hasResult = false;
 		System.out.println("SearchManager.java : PostConstruct: SearChManager finished initializing");
@@ -95,6 +97,7 @@ public class SearchManager implements Serializable{
 
 	public void clear() {
 		result = null;
+		hasResult= false;
 	}
 	
 
