@@ -8,12 +8,12 @@
 	<h:head>
 	</h:head>
 	<h:body>
-        <ui:repeat var="result" value="#{userManager.user.previousSearch}">
+        <ui:repeat var="previous" value="#{userManager.user.previousSearch}">
            		<b:form>
            			<b:panelGrid  columns="3" size="xs" >
-           				<b:navLink  value="#{result.search_value}" update="result-search-id search-form-id map-search-id" ajax="true" onclick="ajax:userManager.searchAgain(result)"/>               				
-						<b:label text="#{result.date}"/>
-						<b:commandButton look="danger" size="xs" icon-awesome="remove" ajax="true" update="search-history-id growl-home" onclick="ajax:userManager.deleteSearch(result)"/>	
+           				<b:navLink  value="#{previous.search_value}" update="result-search-id search-form-id map-search-id" ajax="true" onclick="ajax:userManager.searchAgain(previous)"/>               				
+						<b:label text="#{previous.date}"/>
+						<b:commandButton look="danger" size="xs" icon-awesome="remove" ajax="true" update="search-history-id growl-home" onclick="ajax:userManager.deleteSearch(previous)"/>	
 					</b:panelGrid>
 				</b:form>
 

@@ -10,14 +10,14 @@
 	<h:head>
 	</h:head>
 	<h:body>
-		<b:dataTable value="#{searchManager.result}" var="result2" rendered="#{searchManager.hasResult}" responsive="true" >
+		<b:dataTable value="#{searchManager.result}" var="result2" rendered="#{searchManager.hasResult}" responsive="true"  >
 		    <b:dataTableColumn label="#{result2.name}"  >
 		       <b:navLink  value="#{result2.name}" outcome="/jsf/template/templateElement.xhtml" include-view-params="true">
 					 <f:param name="elementID" value="#{result2.id}" />
    					 <f:param name="elementType" value="#{result2.type}" />		      
 		       </b:navLink>              				
 		    </b:dataTableColumn>
-		    <b:dataTableColumn value="#{result.type}" />
+		    <b:dataTableColumn value="#{result2.type}" />
 		 </b:dataTable>
 		
 	

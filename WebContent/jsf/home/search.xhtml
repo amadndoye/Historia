@@ -24,7 +24,7 @@
   				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMuseum}" id="is-museum-id" itemValue="Museum" />
   				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMonument}" id="is-monument-id" itemValue="Monument"/>
  			 
-  			 <b:panel collapsed="true" title="Museum More Details" id="museum-more">
+  			 <b:panel collapsed="false" title="#{stringText.museumMore}" id="museum-more" >
 			 <b:panelGrid size="xs" columns="2"  >
    				<b:selectOneMenu value="#{userManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">
 		              <f:selectItems value="#{userManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         

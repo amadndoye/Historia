@@ -30,30 +30,31 @@
 		<h:form id="formId">
 	    	<h:inputHidden id="latitude" value="#{userManager.latitude}" />
 	   		<h:inputHidden id="longitude" value="#{userManager.longitude}" />	   		
-	    	<b:commandButton value="findMe" update="info-home map-search-id" />
+	    	<b:commandButton value="#{stringButton.findMe}" update="info-home map-search-id" />
 		</h:form>
 		
 		<b:form id="logout-form-id">
 			<b:commandButton action="#{userManager.logout}" update="growl-home" value="#{stringButton.logout}" />
 		</b:form>
 			
-		<b:panel col-xs="6" col-sm="6" col-md="4"  title= "Research form">
+		<b:panel col-xs="6" col-sm="6" col-md="4"  title= "#{stringText.researchForm}">
 				<b:container id="search-form-id" fluid="true" >
 					<ui:include src="search.xhtml" ></ui:include>
 				</b:container>
 				
-				<b:panel id="search-history-id" title="Previous research" >
+				<b:panel id="search-history-id" title="#{stringText.previousResult}" >
 					<ui:include src="searchHistory.xhtml"></ui:include>
 				</b:panel>
 			
 		</b:panel>
 		
-		<b:panel col-xs="10" col-sm="6" col-md="8" title= "Research result">
-		<b:container id="result-search-id" fluid="true" >
+		<b:panel col-xs="10" col-sm="6" col-md="8" title= "#{stringText.researchResult}">
+		
+			<b:panel id="result-search-id" title="#{stringText.tabView}"  >	
 				 <ui:include src="searchResult.xhtml"/>
-			</b:container>
+			</b:panel>
 			
-			<b:panel id="map-search-id" title="Map View"  collapsed="false"  col-xs="12" col-sm="6" col-md="8" >	
+			<b:panel id="map-search-id" title="#{stringText.mapView}"  >	
 				 	<ui:include src="searchMap.xhtml"></ui:include>
 			</b:panel>
 				

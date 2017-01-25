@@ -168,7 +168,7 @@ public class UserManager implements Serializable{
 			 search= new SearchBean();
 			 searchManager.clear();
 		 }else{
-			search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+			search.setDate(DateFormat.getDateTimeInstance(DateFormat.SHORT,DateFormat.SHORT).format(new Date()));
 			searchManager.search(search);
 			addResearch(search);
 			search = new SearchBean();
@@ -182,9 +182,7 @@ public class UserManager implements Serializable{
 		  	this.search = searchAgain;
 		  	search.setDate(DateFormat.getDateTimeInstance().format(new Date()));
 			searchManager.search(search);
-			search = new SearchBean();
-		 
-		 
+			search = new SearchBean();		 
 	  }
 
 	public SearchManager getSearchManager() {
@@ -193,11 +191,6 @@ public class UserManager implements Serializable{
 
 	public void setSearchManager(SearchManager searchManager) {
 		this.searchManager = searchManager;
-	}
-	
-	public String setPosition(){
-		 System.out.println("UserManager.java :setPosition : latitude = "+latitude +" longitude = "+longitude);
-		return "";
 	}
 	
 	public float getLatitude(){
