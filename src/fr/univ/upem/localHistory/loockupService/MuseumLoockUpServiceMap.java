@@ -98,26 +98,26 @@ public class MuseumLoockUpServiceMap implements IMuseumLoockUpService, ILocation
 	public void init(){
 		currentId = 0 ; 
 		museums.put(currentId,new MuseumBean(currentId,"Musée de la Folie Marco", "BARR"));
-		museums.get(currentId).setAdresse("30, Rue du Dr Sultzer");
+		museums.get(currentId).setAdresse("30, Rue du Dr Sultzer,67140 BARR France");
 		museums.get(currentId).setCountry("France");
 		museums.get(currentId).setCodePostal(67140);
 		currentId++;
 		museums.put(currentId,new MuseumBean(currentId,"Ecomusée de la Grande Lande", "SABRES"));
-		museums.get(currentId).setAdresse("Route de Soférino");
+		museums.get(currentId).setAdresse("Route de Soférino,40630 SABRES France");
 		museums.get(currentId).setCountry("France");
 		museums.get(currentId).setCodePostal(40630);
 
 		currentId++;
 
 		museums.put(currentId,new MuseumBean(currentId,"Maison de la Magie", "BLOIS"));
-		museums.get(currentId).setAdresse("1, Place du Château");
+		museums.get(currentId).setAdresse("1, Place du Château, 41000 BLOIS France");
 		museums.get(currentId).setCountry("France");
 		museums.get(currentId).setCodePostal(41000);
 
 		currentId++;
 
 		museums.put(currentId,new MuseumBean(currentId,"Musée Roybet Fould", "COURBEVOIE"));
-		museums.get(currentId).setAdresse("Parc de Bécon 178, Boulevard Saint Denis");
+		museums.get(currentId).setAdresse("Parc de Bécon 178, Boulevard Saint Denis, 92400 COURBEVOIE France");
 		museums.get(currentId).setCountry("France");
 		museums.get(currentId).setCodePostal(92400);
 

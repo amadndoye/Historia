@@ -1,25 +1,28 @@
 package fr.univ.upem.localHistory.managedBeans;
 
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import fr.univ.upem.localHistory.beans.AbstractLocationBean;
-import fr.univ.upem.localHistory.beans.MuseumBean;
 
 @ManagedBean
+@RequestScoped
 public class LocalityManager {
 
 	private long id ;
 	private String type;
-	private  AbstractLocationBean locality;
+	private AbstractLocationBean locality;
 	
 	public void init() {
 		System.out.println("LocalityManager.java : PostConstruct: Locality is initializing");
 		locality = SearchManager.get(id,type);
-		System.out.println("LocalityManager.java : PostConstruct: LocalityManager finished initializing");
+
+		System.out.println("LocalityManager.java : PostConstruct: LocalityManager finished initializing + " +locality.isMuseum());
 
 	}
 	
@@ -32,7 +35,9 @@ public class LocalityManager {
 	 }
 
 	public void setId(long id) {
+		
 		this.id = id;
+		//init();
 	}
 	
 	public long getId(){
@@ -53,8 +58,8 @@ public class LocalityManager {
 	}
 
 
-	public void setLocality(MuseumBean museum) {
-		this.locality = museum;
+	public void setLocality(AbstractLocationBean locality) {
+		this.locality = locality;
 	}
 
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:o="http://omnifaces.org/ui"
+	  xmlns:of="http://omnifaces.org/functions"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:p="http://primefaces.org/ui">  
+	  
+	<h:head>
+	</h:head>
+
+	<h:body>
+		<p:gmap id="map" widgetVar="map" center="#{userManager.latitude},#{userManager.longitude}"  zoom="15" type="ROADMAP" style="width:100%;height:400px" model="#{searchManager.mapModel}">
+		        <p:ajax event="geocode" listener="#{#{searchManager.onGeocode}" update="@this" />
+		</p:gmap>
+	</h:body>
+</html>

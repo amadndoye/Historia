@@ -15,11 +15,12 @@
 	 
 	<h:body>	
 		<h:form >	
-            <m:map  enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true"  >
+            <m:map  enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true" latitude="#{userManager.latitude}" longitude="#{userManager.longitude}" jsVariable="map1">
             	<ui:fragment rendered="#{userManager.latitude != 0}" >
-            
-	            	<m:marker latitude="#{userManager.latitude}" longitude="#{userManager.longitude}" >
-						<m:htmlInformationWindow htmlText="moi"/>
+	            	<m:marker latitude="#{userManager.latitude}" longitude="#{userManager.longitude}"  >
+	            	    <m:icon shadowImageURL="http://www.google.com/mapfiles/shadow50.png" imageURL="https://maps.gstatic.com/mapfiles/ms2/micons/green-dot.png"/>
+	            	
+						<m:htmlInformationWindow htmlText="I am here"/>
 	             	</m:marker>
 	            </ui:fragment>
 	             
@@ -28,18 +29,20 @@
 	             		<m:marker address="#{resultmap.adresse}, #{resultmap.city} #{resultmap.country}">
 							<m:htmlInformationWindow htmlText="#{resultmap.name}"/>
 		                </m:marker>
+		           
 	             	</ui:fragment>
 	             	<ui:fragment rendered="#{not resultmap.museum}" >
 	             		<m:marker latitude="#{resultmap.latitude}" longitude="#{resultmap.longitude}">
+	             			
 							<m:htmlInformationWindow htmlText="#{resultmap.name}"/>
 	                	</m:marker>
-	             		
 	             	</ui:fragment>
              	             
        		 </ui:repeat>
                 
                 
              </m:map>
+             
         </h:form>
 	</h:body>
 </html>

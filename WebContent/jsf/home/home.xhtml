@@ -17,46 +17,43 @@
 		<h:outputScript library="javax.faces" name="jsf.js" target="head"/>
 		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
 		<h:outputScript library="omnifaces" name="fixviewstate.js" target="head" />
-		
 		<o:deferredScript name="findMe.js" type="text/javascript" />
 		
-		<b:container id="info-home">
-			<h1 class="title">User Name = "#{userManager.user.userName}"</h1>
-			<h1 class="title">Password = "#{userManager.user.password}"</h1>
-			<h1 class="title">Mail = "#{userManager.user.mail}"</h1>
-			<h1>latitude = "#{userManager.latitude}"  longitude = "#{userManager.longitude}" </h1>
-		</b:container>
-		
-		<h:form id="formId">
-	    	<h:inputHidden id="latitude" value="#{userManager.latitude}" />
-	   		<h:inputHidden id="longitude" value="#{userManager.longitude}" />	   		
-	    	<b:commandButton value="#{stringButton.findMe}" update="info-home map-search-id" />
-		</h:form>
-		
-		<b:form id="logout-form-id">
-			<b:commandButton action="#{userManager.logout}" update="growl-home" value="#{stringButton.logout}" />
-		</b:form>
+		<b:panelGrid  columns="2" size="xs" id="info-home">
+			<b:panel title="#{stringText.userInfo}" >
+				<b:form id="formId">
+					#{userManager.user.userName} <br/>
+					latitude = #{userManager.latitude}  longitude = #{userManager.longitude} <br/>
+			    	<h:inputHidden id="latitude" value="#{userManager.latitude}" />
+			   		<h:inputHidden id="longitude" value="#{userManager.longitude}" />	   		
+			    	<b:commandButton value="#{stringButton.findMe}" update="info-home map-search-id" />
+			    	<b:commandButton action="#{userManager.logout}" update="growl-home" value="#{stringButton.logout}" />
+		    
+				</b:form>
+			</b:panel>
 			
-		<b:panel col-xs="6" col-sm="6" col-md="4"  title= "#{stringText.researchForm}">
-				<b:container id="search-form-id" fluid="true" >
-					<ui:include src="search.xhtml" ></ui:include>
-				</b:container>
-				
-				<b:panel id="search-history-id" title="#{stringText.previousResult}" >
-					<ui:include src="searchHistory.xhtml"></ui:include>
-				</b:panel>
-			
+			<b:panel id="search-history-id" title="#{stringText.previousResult}" >
+				<ui:include src="searchHistory.xhtml"></ui:include>
+			</b:panel>
+		</b:panelGrid>
+					
+		<b:panel col-xs="6" col-sm="6" col-md="3" title= "#{stringText.researchForm}">
+			<b:container id="search-form-id" fluid="true" >
+				<ui:include src="search.xhtml" ></ui:include>
+			</b:container>
+						
 		</b:panel>
 		
-		<b:panel col-xs="10" col-sm="6" col-md="8" title= "#{stringText.researchResult}">
-		
-			<b:panel id="result-search-id" title="#{stringText.tabView}"  >	
-				 <ui:include src="searchResult.xhtml"/>
-			</b:panel>
-			
-			<b:panel id="map-search-id" title="#{stringText.mapView}"  >	
-				 	<ui:include src="searchMap.xhtml"></ui:include>
-			</b:panel>
+		<b:panel  col-xs="12" col-sm="8" col-md="9" title= "#{stringText.researchResult}">
+			<b:panelGrid columns="2" id="info-result">
+				<b:panel id="result-search-id" title="#{stringText.tabView}"  >	
+					 <ui:include src="searchResult.xhtml"/>
+				</b:panel>
+				
+				<b:panel id="map-search-id" title="#{stringText.mapView}"  >	
+					 	<ui:include src="searchMap.xhtml"></ui:include>
+				</b:panel>
+			</b:panelGrid>
 				
 		</b:panel>
 		

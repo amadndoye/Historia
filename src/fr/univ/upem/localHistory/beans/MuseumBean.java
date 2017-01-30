@@ -3,10 +3,7 @@ package fr.univ.upem.localHistory.beans;
 
 public class MuseumBean extends AbstractLocationBean{
 	
-
 	private static final long serialVersionUID = 8200204668525482940L;
-	private String name;
-	private String adresse;
 	private String city;
 	private String department;
 	private int codePostal;
@@ -29,26 +26,17 @@ public class MuseumBean extends AbstractLocationBean{
 	
 	private boolean free;
 		
-	public MuseumBean(){
-		super("Museum");
+	public MuseumBean(String name){
+		super(name,"Museum");
+		museum = true;
+
 	}
 	
 	public MuseumBean(long id,String name ,String city){
-		super(id,"Museum");
-		this.name = name; 
+		super(id,name,"Museum");
 		this.city = city;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAdresse() {
-		return adresse;
-	}
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
+		museum = true;
+
 	}
 
 	public String getRegion() {
@@ -149,6 +137,11 @@ public class MuseumBean extends AbstractLocationBean{
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	@Override
+	public boolean isMuseum() {
+		return true;
 	}
 
 }

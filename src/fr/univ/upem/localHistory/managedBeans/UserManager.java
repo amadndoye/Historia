@@ -38,8 +38,8 @@ public class UserManager implements Serializable{
 
 	private IUserLoockUpService userLS ;
 	
-	private float latitude;
-	private float longitude;
+	private double latitude = 48.866667;
+	private double longitude = 2.333333;
 	
 	public UserBean getUser(){
 		return user;
@@ -193,17 +193,17 @@ public class UserManager implements Serializable{
 		this.searchManager = searchManager;
 	}
 	
-	public float getLatitude(){
+	public double getLatitude(){
 		return latitude;
 	}
-	public float getLongitude(){
+	public double getLongitude(){
 		return longitude;
 	}
 
-	public void setLatitude( float x){
+	public void setLatitude( double x){
 		latitude = x;
 	}
-	public void setLongitude(float y){
+	public void setLongitude(double y){
 		 longitude = y ;
 	}
 }

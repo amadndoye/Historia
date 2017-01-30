@@ -59,21 +59,21 @@ public class MonumentLoockUpServiceMap implements IMonumentLoockUpService, ILoca
 	public void init() {
 
 		currentId = 0 ; 
-		monuments.put(currentId,new MonumentBean(currentId,"La Statue de la Liberté", "ILE-DE-FRANCE"));
+		monuments.put(currentId,new MonumentBean(currentId,"La Statue de la Liberté"));
 		monuments.get(currentId).setLatitude(40.689249);
 		monuments.get(currentId).setLongitude(-74.0445);
 		currentId++;
-		monuments.put(currentId,new MonumentBean(currentId,"Palais de L'élysé", "ILE-DE-FRANCE"));
+		monuments.put(currentId,new MonumentBean(currentId,"Palais de L'élysé"));
 		monuments.get(currentId).setLatitude(48.870416);
 		monuments.get(currentId).setLongitude(2.316754);
 		currentId++;
 
-		monuments.put(currentId,new MonumentBean(currentId,"Opéra de National", "DIJON"));
+		monuments.put(currentId,new MonumentBean(currentId,"Opéra de National"));
 		monuments.get(currentId).setLatitude(44.842507);
 		monuments.get(currentId).setLongitude(-0.574178);
 		currentId++;
 
-		monuments.put(currentId,new MonumentBean(currentId,"Basilique de Saint-Michel", "LA MACHINE"));
+		monuments.put(currentId,new MonumentBean(currentId,"Basilique de Saint-Michel"));
 		monuments.get(currentId).setLatitude(44.834401);
 		monuments.get(currentId).setLongitude(-0.565021);
 		currentId++;

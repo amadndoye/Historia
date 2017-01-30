@@ -5,21 +5,21 @@ public class MonumentBean extends AbstractLocationBean {
 	
 	
 	private static final long serialVersionUID = -5425067605553684478L;
-	private String name;
 		
-	public MonumentBean(){
-		super("Monument");
+	public MonumentBean(String name){
+		super(name,"Monument");
+		museum = false;
+
 	}
-	public MonumentBean(long id,String name, String string2) {
-		super(id, "Monument");
-		this.name = name;
+	public MonumentBean(long id,String name) {
+		super(id,name,"Monument");
+		museum = false;
 	}
-	public String getName() {
-		return name;
+	@Override
+	public boolean isMuseum() {
+		return false;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-		
+	
+	
 
 }

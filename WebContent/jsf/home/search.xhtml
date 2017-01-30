@@ -10,27 +10,27 @@
 	</h:head>
 	
 	<h:body >	
-		<b:form >
+		<b:form>
 		   	<b:row >
-				<b:inputText value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" >
-				   <f:facet name="append"> 
-	 				<b:commandButton value ="#{stringButton.submit}" update="result-search-id search-history-id map-search-id growl-home" actionListener="#{userManager.search}"/>
-	 				<b:commandButton value ="#{stringButton.clear}" update="result-search-id search-form-id map-search-id growl-home" actionListener="#{userManager.clear}" look="danger"/>
-				   </f:facet>
-				
+				<b:inputText fieldSize="sm" value="#{userManager.search.search_value}" id="search-value-id" placeholder="#{stringButton.searchPlaceholder}" >
+				 	<f:ajax event="keyup" render="label" />
 				</b:inputText>
+			 	<b:label text="#{userManager.search.search_value}" id="label"/>
 			</b:row>
-		      	 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxBoth}" id ="is-both-id" itemValue="Both" />
+			<b:row >
+					<b:commandButton  size="xs" value ="#{stringButton.submit}" update="result-search-id search-history-id map-search-id growl-home" actionListener="#{userManager.search}"/>
+	 				<b:commandButton size="xs" value ="#{stringButton.clear}" update="result-search-id search-form-id map-search-id growl-home" actionListener="#{userManager.clear}" look="danger"/>
+			</b:row>
+			
+		      	 <b:radiobutton  value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxBoth}" id ="is-both-id" itemValue="Both" />
   				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMuseum}" id="is-museum-id" itemValue="Museum" />
   				 <b:radiobutton value="#{userManager.search.type}" itemLabel="#{stringButton.checkboxMonument}" id="is-monument-id" itemValue="Monument"/>
  			 
   			 <b:panel collapsed="false" title="#{stringText.museumMore}" id="museum-more" >
-			 <b:panelGrid size="xs" columns="2"  >
-   				<b:selectOneMenu value="#{userManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">
+   				<b:selectOneMenu fieldSize="sm" value="#{userManager.search.selected_match}" id="selected-match-id" label="#{stringButton.multiItemMatch}">
 		              <f:selectItems value="#{userManager.search.selected_matches}" var="c" itemValue="#{c}" itemLabel="#{c}" />         
 				</b:selectOneMenu>								    
-				<b:selectBooleanCheckbox span="1" value="#{userManager.search.free}" label="#{stringButton.checkboxFree}" id ="is-free-id" />
-		      </b:panelGrid>
+				<b:selectBooleanCheckbox fieldSize="sm" span="1" value="#{userManager.search.free}" caption="#{stringButton.checkboxFree}" id ="is-free-id" />
 		      </b:panel>     
 		</b:form>		
 		
