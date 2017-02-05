@@ -6,6 +6,7 @@
 package fr.univ.upem.localHistory.database;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,8 +25,12 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
+    
+    @Column(name = "USERNAME", length=32)
     private String userName;
+    @Column(name = "MAIL", length=32)
     private String mail;
+    @Column(name = "PASSWORD", length=32)
     private String password;
     
     public User(){
