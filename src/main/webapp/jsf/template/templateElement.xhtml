@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{userManager.locale}" 
+    xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:m="http://code.google.com/p/gmaps4jsf/"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      
+	<h:head>
+		<title>#{stringText.indexTitle}</title>
+		<script src="https://maps.googleapis.com/maps/api/js?file=api&amp;v=3&amp;key=AIzaSyCfXN_jHK2GsK3xbGC0L_QH89tb_WsU9N8" type="text/javascript"/>
+                <h:outputScript name="direction.js" library="js" />
+                <h:outputStylesheet name="templateElement.css" library="css"/>
+                <f:metadata>
+                    <f:viewParam name="elementID" value="#{localityManager.id}" />   
+                    <f:viewParam name="elementType" value="#{localityManager.type}" />    
+                </f:metadata>
+            <f:view locale="#{userManager.locale}"/> 
+
+	</h:head>
+	
+    <h:body rendered="#{userManager.user != null}">	      
+                 
+            <p:layout fullPage="true">
+                
+                <p:layoutUnit position="west" resizable="true" size="350" minSize="300" maxSize="500" styleClass="noBorder">
+                    <f:facet name="header">
+                         <p:row>
+                            <p:column > #{stringText.information} </p:column>
+                        </p:row>
+                        </f:facet>
+                     <ui:fragment rendered="#{localityManager.locality.museum}" >
+                         <p:accordionPanel id="tabid" >
+                            
+                            <p:tab title="#{stringText.theme}">
+                                <h:panelGrid cellpadding="10">
+                                    <h:outputText value="#{localityManager.locality.themes}" />
+                                </h:panelGrid>
+                            </p:tab>
+                             <p:tab title="#{stringText.description}"  >
+                                <h:panelGrid cellpadding="10">
+                                    <h:outputText
+                                        value="#{localityManager.locality.decriptionShort}" />
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="#{stringText.access}">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="#{localityManager.locality.acces}" />
+                                </h:panelGrid>
+                            </p:tab>
+                             <p:tab title="#{stringText.page}"  >
+                                 <p:panelGrid  columns="2" layout="grid"  id="panelgrid3" >
+                                    
+                                    <ui:fragment rendered="#{localityManager.locality.website ne 0}" >
+                                      <p:link  href="http://#{localityManager.locality.website}" value="#{stringText.website}" styleClass="link" />
+                                    </ui:fragment>
+
+                                    <ui:fragment rendered="#{localityManager.locality.facebookLink ne 0}" >
+                                      <p:link target="_blank" href="http://#{localityManager.locality.facebookLink}" value="Facebook" styleClass="link" />
+                                     </ui:fragment>
+
+                                    <ui:fragment rendered="#{localityManager.locality.twitterLink ne 0}" >                        
+                                       <p:link target="_blank" href="http://#{localityManager.locality.twitterLink}" value="Twitter" styleClass="link"  />
+                                    </ui:fragment>
+
+                                   <ui:fragment rendered="#{localityManager.locality.mail ne 0}" >
+                                        <p:link href="mailto:#{localityManager.locality.mail}" value="#{stringText.mail}" styleClass="link"  /> <br/>
+                                    </ui:fragment>
+                                         
+                                    <ui:fragment rendered="#{localityManager.locality.phone ne 0}" >
+                                        <h:outputText value="#{localityManager.locality.phone}" />
+                                    </ui:fragment>
+
+                                  </p:panelGrid>
+                            </p:tab>
+                         </p:accordionPanel>         
+
+                     </ui:fragment>
+                 </p:layoutUnit>
+                
+                <p:layoutUnit position="east" resizable="true" size="350" minSize="300" maxSize="500" styleClass="noBorder" >
+                   <f:facet name="header">
+                         <p:row>
+                            <p:column > #{stringText.history} </p:column>
+                        </p:row>
+                    </f:facet>
+                    <p:panel>
+                         <ui:fragment rendered="#{localityManager.locality.museum}" >
+                            <ui:fragment rendered="#{localityManager.locality.museum}" >
+                                <p:outputLabel value="#{localityManager.locality.descriptionLong}"  />
+                            </ui:fragment>
+                        </ui:fragment>
+                    </p:panel>
+                   
+                 </p:layoutUnit>
+                
+                
+                <p:layoutUnit id="layoutNorth" position="north" resizable="true" size="125" minSize="125" maxSize="150"  >
+                    <f:facet name="header">
+                            <p:row>
+                              <p:column colspan="7">#{stringText.linformation}</p:column>
+                            </p:row>
+                      </f:facet>
+                    <p:panelGrid columns="3" layout="grid" id="mypanel"  >  
+                         <h:form>
+                             <b:button icon-awesome="fa-arrow-circle-left" value ="#{stringButton.previous}" outcome="/jsf/home/home.xhtml"  style="float: left;" />
+                         </h:form>
+                         
+                        #{localityManager.locality.name} <br/>
+                        #{localityManager.locality.adresse}<br/>                         
+                        
+                          
+                        <p:column>
+                          <h:form id="directionFormID">
+                              <p:panel style="float: right;">
+
+                                  <p:inputText id="addressStart"  placeholder="#{searchManager.address}" style="height: 37.9px;margin-right: 3px;" /> 
+                              <b:commandButton  value ="itineraire" type="button" onclick="PF('dlg1').show();" />
+
+                              </p:panel>
+                                                          
+                         </h:form>
+                        <p:inputText type="hidden" styleClass="latstart" value="#{searchManager.latitude}" /> 
+                        <p:inputText type="hidden" styleClass="lngstart" value="#{searchManager.longitude}"/>
+                        <p:inputText type="hidden" styleClass="latitudedest" value="#{localityManager.locality.latitude}" />
+                        <p:inputText type="hidden" styleClass="longitudedest" value="#{localityManager.locality.longitude}" />
+                        
+                        </p:column>
+                    </p:panelGrid>
+                </p:layoutUnit>
+                
+                <p:layoutUnit  id="map" position="center" resizable="true" size="700" minSize="600" maxSize="800" styleClass="noBorder" >
+                    
+                     <h:form id="formTmp" styleClass="noBorder">
+                        <m:streetViewPanorama  width="800" height="550px"  latitude="#{localityManager.locality.latitude}" longitude="#{localityManager.locality.longitude}" />
+
+
+                    </h:form>
+                </p:layoutUnit>
+                                
+             </p:layout>
+		           
+            <p:dialog id="dialogDirection" header="Effects" widgetVar="dlg1" height="25em" width="90em"  responsive="true" dynamic="true" closable="true" closeOnEscape="true" onShow="calcRoute();">
+                  #{stringText.distance} :  #{localityManager.getDistance(searchManager.latitude, searchManager.longitude)}<br/> 
+                  #{stringText.coordinates} : #{localityManager.locality.latitude} , #{localityManager.locality.longitude}  <br/>
+                <h:form id="formdialogID">   
+                    <p:panelGrid columns="2" layout="grid"  id="panelGriddialog1" >
+                        <m:map id="directionMap" height="34em" width="40em" enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true" latitude="#{searchManager.latitude}" longitude="#{searchManager.longitude}" jsVariable="gmap"/>
+                        <p:outputLabel  id="directionsPanel"  />
+                    </p:panelGrid>
+                </h:form >	
+           </p:dialog>  
+
+	</h:body>
+</html>

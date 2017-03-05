@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:m="http://code.google.com/p/gmaps4jsf/"
+      >	  
+	<h:head>	
+	</h:head>
+	 
+	<h:body>
+            <h:form >	
+            <m:map  enableScrollWheelZoom="true" partiallyTriggered="true" autoReshape ="true" latitude="#{searchManager.latitude}" longitude="#{searchManager.longitude}">
+            	<ui:fragment rendered="#{searchManager.latitude != 0}" >
+	            	<m:marker latitude="#{searchManager.latitude}" longitude="#{searchManager.longitude}"  >
+	            	    <m:icon shadowImageURL="https://www.google.com/mapfiles/shadow50.png" imageURL="https://maps.gstatic.com/mapfiles/ms2/micons/green-dot.png"/>
+                                <m:htmlInformationWindow htmlText="I am here"/>
+	             	</m:marker>
+	            </ui:fragment>
+	             
+             	<ui:repeat var="resultmap" value="#{searchManager.result}">
+                    <m:marker latitude="#{resultmap.latitude}" longitude="#{resultmap.longitude}">
+                            <m:htmlInformationWindow htmlText="#{resultmap.name}"/>
+                    </m:marker>
+             	             
+       		 </ui:repeat>
+                
+                
+             </m:map>
+                                 
+        </h:form>
+	</h:body>
+</html>

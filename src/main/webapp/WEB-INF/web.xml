@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+	<servlet-name>SourceCodeServlet</servlet-name>	
+	<servlet-class>com.googlecode.gmaps4jsf.util.SourceCodeServlet</servlet-class>
+	</servlet>
+	
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+    <url-pattern>/javax.faces.resource/*</url-pattern>
+
+  </servlet-mapping>
+  
+   <welcome-file-list>
+    <welcome-file>jsf/index.xhtml</welcome-file>
+  </welcome-file-list>
+
+	<login-config>
+    <auth-method>CLIENT-CERT</auth-method>
+    <realm-name>certificate</realm-name>
+</login-config>
+        <!-- security config --> 
+    <security-constraint>   
+        
+    <display-name>ConstraintSSL</display-name>
+    <web-resource-collection>
+        <web-resource-name>jsf</web-resource-name>
+        <description/>
+        <url-pattern>/*</url-pattern>
+        <http-method>GET</http-method>
+        <http-method>POST</http-method>
+        <http-method>HEAD</http-method>
+        <http-method>PUT</http-method>
+        <http-method>OPTIONS</http-method>
+        <http-method>TRACE</http-method>
+        <http-method>DELETE</http-method>
+    </web-resource-collection>
+
+    <user-data-constraint>        
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>        
+
+</security-constraint>
+
+<!-- BootsFaces Config  --> 
+	<context-param>
+  	 	<param-name>javax.faces.FACELETS_DECORATORS</param-name>
+   		<param-value>net.bootsfaces.decorator.BootsFacesTagDecorator</param-value>
+ 	</context-param>
+   	<context-param>
+    	<param-name>BootsFaces_THEME</param-name>
+    	<param-value>spacelab</param-value>
+	</context-param>
+  	<context-param>
+        <param-name>BootsFaces_USETHEME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <!-- end of BootsFaces Config  --> 
+    
+ <!--  omniface config  -->
+ <!-- activate resource caching -->
+	<context-param>
+	    <param-name>org.omnifaces.COMBINED_RESOURCE_ACTIVATE_RESOURCE_CACHING</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+	<!-- cache ten combined resources at most -->
+	<context-param>
+	    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_MAX_CAPACITY</param-name>
+	    <param-value>30</param-value>
+	</context-param>
+	<!-- set the maximum time-to-live of cache entries to one day -->
+	<context-param>
+	    <param-name>org.omnifaces.CACHE_SETTING_APPLICATION_TTL</param-name>
+	    <param-value>86400</param-value>
+	</context-param>
+ <!--  end omniface config  -->
+
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+  <context-param>
+    <description>State saving method: 'client' or 'server' (default). See JSF Specification section 2.5.2</description>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  
+  
+</web-app>

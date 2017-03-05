@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="HistoriaPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>fr.univ.upem.m2.jee.historia.entity.AbstractLocation</class>
+    <class>fr.univ.upem.m2.jee.historia.entity.Login</class>
+    <class>fr.univ.upem.m2.jee.historia.entity.Monument</class>
+    <class>fr.univ.upem.m2.jee.historia.entity.Museum</class>
+    <class>fr.univ.upem.m2.jee.historia.entity.Search</class>
+
+
+   <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/HistoriaDB;create=true"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.user" value="historia"/>
+            <property name="javax.persistence.jdbc.password" value="historia"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+            <property name="hibernate.connection.CharSet" value="utf8"/>
+            <property name="hibernate.connection.characterEncoding" value="utf8"/>
+            <property name="hibernate.connection.useUnicode" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+        </properties>
+  </persistence-unit>
+</persistence>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{userManager.locale}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+	  
+	<h:head>
+		<title>#{stringText.homeTitle}</title>	
+		<script src="https://maps.googleapis.com/maps/api/js?file=api&amp;v=3&amp;key=AIzaSyCfXN_jHK2GsK3xbGC0L_QH89tb_WsU9N8" type="text/javascript"/>
+               
+                
+                <h:outputScript library="javax.faces" name="jsf.js" target="head"/>
+		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+		<h:outputScript library="omnifaces" name="fixviewstate.js" target="head" />
+                <h:outputStylesheet name="home.css" library="css"/>
+                <h:outputScript name="findMe.js" library="js" target="head"/>
+                 <f:view locale="#{userManager.locale}"/>
+
+	
+	</h:head>
+	<h:body>
+            
+		<b:panelGrid  columns="2" size="xs" id="info-home">
+			<b:panel title="#{stringText.userInfo}" id="panelInfoID" >
+
+                            <div>
+                                <h:form id="formUserInfoId" style="float: left;">
+
+                                    #{userManager.userName} <br/>
+                                    latitude = #{searchManager.latitude}  longitude = #{searchManager.longitude} <br/>
+                                    userAdresse = #{searchManager.address} <br/>
+                                    <h:inputHidden id="latitude" value="#{searchManager.latitude}" />
+                                    <h:inputHidden id="longitude" value="#{searchManager.longitude}" />
+                                    <h:inputHidden id="userAddress" value="#{searchManager.address}" />	 
+                                    <p:remoteCommand name="remoteChangeCommand" process="userAddress latitude longitude" update="info-home map-search-id " />
+
+                                    <b:commandButton action="#{userManager.logout}" update="growl-home" value="#{stringButton.logout}"  />
+                                </h:form>                               
+
+                            </div>
+                            
+                            <div>
+                               <h:form id="arroundMeID">
+
+                                   <b:commandButton  id="findArroudMeButton" value="#{stringButton.findArroundMe}" update="info-home map-search-id result-search-id"   actionListener="#{searchManager.searchArroundMeEvent}" style="float: right;"/>
+                               </h:form>
+
+                                </div>
+			</b:panel>
+			
+			<b:panel id="search-history-id" title="#{stringText.previousResult}" >
+				<ui:include src="searchHistory.xhtml"></ui:include>
+			</b:panel>
+		</b:panelGrid>
+					
+		<b:panel col-xs="6" col-sm="6" col-md="3" title= "#{stringText.researchForm}">
+			<b:container id="search-form-id" fluid="true" >
+				<ui:include src="search.xhtml" ></ui:include>
+			</b:container>
+						
+		</b:panel>
+		
+		<b:panel  col-xs="12" col-sm="8" col-md="9" title= "#{stringText.researchResult}">
+			<b:panelGrid columns="2" id="info-result">
+				<b:panel id="result-search-id" title="#{stringText.tabView}"  >	
+					 <ui:include src="searchResult.xhtml"/>
+				</b:panel>
+				
+				<b:panel id="map-search-id" title="#{stringText.mapView}"  >	
+					 	<ui:include src="searchMap.xhtml"></ui:include>
+				</b:panel>
+			</b:panelGrid>
+				
+		</b:panel>
+		
+		<b:growl id="growl-home"  placementFrom="top" show-detail="false" global-only="true"
+	       					show-summary="true" allow-dismiss="true" animation-enter="animated bounceInDown"
+	      						 animation-exit="animated flipOutX" escape="true"    />
+				 	
+	</h:body>
+</html>
